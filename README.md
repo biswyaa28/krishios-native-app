@@ -3,3 +3,4 @@ An offline-first assistant that detects crop diseases, explains them in the farm
 
 
 SNEHA IS GAY PARSHVI IS GAY AND SASANKA IS QUEER
+billionaire loading.....
