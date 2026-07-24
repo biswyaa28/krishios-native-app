@@ -1,0 +1,15 @@
+[debug] [2026-07-24T21:58:05.157Z] ----------------------------------------------------------------------
+[debug] [2026-07-24T21:58:05.166Z] Command:       /Users/biswyaa/.nvm/versions/node/v24.16.0/bin/node /Users/biswyaa/.nvm/versions/node/v24.16.0/bin/firebase deploy --only firestore:indexes
+[debug] [2026-07-24T21:58:05.166Z] CLI Version:   15.24.0
+[debug] [2026-07-24T21:58:05.166Z] Platform:      darwin
+[debug] [2026-07-24T21:58:05.166Z] Node Version:  v24.16.0
+[debug] [2026-07-24T21:58:05.166Z] Detected Agent: unknown
+[debug] [2026-07-24T21:58:05.166Z] Time:          Sat Jul 25 2026 03:28:05 GMT+0530 (India Standard Time)
+[debug] [2026-07-24T21:58:05.166Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-07-24T21:58:11.198Z] Error: Timed out.
+    at Timeout._onTimeout (/Users/biswyaa/.nvm/versions/node/v24.16.0/lib/node_modules/firebase-tools/lib/utils.js:296:49)
+    at listOnTimeout (node:internal/timers:605:17)
+    at process.processTimers (node:internal/timers:541:7)
+[error] 
+[error] Error: An unexpected error has occurred.

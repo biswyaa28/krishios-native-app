@@ -280,7 +280,8 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Base Application Executable (APK)', style: AppTextStyles.bodyMd),
+                        Expanded(child: Text('Base Application Executable (APK)', style: AppTextStyles.bodyMd)),
+                        const SizedBox(width: 8),
                         const Text('46.2 MB', style: TextStyle(fontWeight: FontWeight.bold)),
                       ],
                     ),
@@ -288,7 +289,8 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('ONNX Edge Models & Hive Database', style: AppTextStyles.bodyMd),
+                        Expanded(child: Text('ONNX Edge Models & Hive Database', style: AppTextStyles.bodyMd)),
+                        const SizedBox(width: 8),
                         Text('${_realDbSizeMb.toStringAsFixed(1)} MB', style: const TextStyle(fontWeight: FontWeight.bold)),
                       ],
                     ),
@@ -296,7 +298,8 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Temporary Diagnostic Image Cache', style: AppTextStyles.bodyMd),
+                        Expanded(child: Text('Temporary Diagnostic Image Cache', style: AppTextStyles.bodyMd)),
+                        const SizedBox(width: 8),
                         Text('${_realCacheSizeMb.toStringAsFixed(1)} MB', style: const TextStyle(fontWeight: FontWeight.bold)),
                       ],
                     ),
@@ -304,7 +307,8 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Real Storage Footprint', style: AppTextStyles.bodyMd.copyWith(fontWeight: FontWeight.bold)),
+                        Expanded(child: Text('Real Storage Footprint', style: AppTextStyles.bodyMd.copyWith(fontWeight: FontWeight.bold))),
+                        const SizedBox(width: 8),
                         Text('${_realTotalSizeMb.toStringAsFixed(1)} MB', style: TextStyle(fontWeight: FontWeight.bold, color: AppColors.primary)),
                       ],
                     ),

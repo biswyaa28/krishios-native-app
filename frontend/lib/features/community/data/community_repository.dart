@@ -9,13 +9,12 @@ class CommunityRepository {
 
   Stream<List<CommunityPost>> getPosts({String? category, int limit = 50}) {
     Query query = _firestore.collection('posts').orderBy('createdAt', descending: true);
-    return query.limit(limit).snapshots().map((snapshot) {
-      final posts = snapshot.docs.map((doc) => CommunityPost.fromFirestore(doc)).toList();
-      if (category != null && category != 'Trending') {
-        return posts.where((post) => post.category == category).toList();
-      }
-      return posts;
-    });
+    if (category != null && category != 'Trending') {
+      query = query.where('category', isEqualTo: category);
+    }
+    return query.limit(limit).snapshots().map(
+      (snapshot) => snapshot.docs.map((doc) => CommunityPost.fromFirestore(doc)).toList(),
+    );
   }
 
   Future<void> createPost(CommunityPost post) async {

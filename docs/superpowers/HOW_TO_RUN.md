@@ -44,6 +44,12 @@ Boots simulator, starts backend, launches app:
 xcrun simctl boot "iPhone 17 Pro" 2>/dev/null; open -a Simulator && (cd backend && source .venv/bin/activate && python app.py) & (cd frontend && flutter run -d 'iPhone 17 Pro')
 ```
 
+### PPT Website
+
+```bash
+cd website && npm install && npm run dev
+```
+
 ---
 
 ## Verify
