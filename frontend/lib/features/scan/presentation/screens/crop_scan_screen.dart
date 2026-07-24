@@ -129,46 +129,65 @@ class _CropScanScreenState extends ConsumerState<CropScanScreen> {
       double confidence = 0.0;
       double? healthScore;
 
-      final Uri uri;
+      List<Uri> candidateUris = [];
       if (kIsWeb) {
         final origin = Uri.base.origin;
-        uri = Uri.parse('$origin/api/predict');
+        candidateUris.add(Uri.parse('$origin/api/predict'));
+        if (origin.contains('localhost') || origin.contains('127.0.0.1')) {
+          candidateUris.add(Uri.parse('http://localhost:8000/predict'));
+          candidateUris.add(Uri.parse('http://localhost:8080/predict'));
+        }
       } else {
         final override = ApiConstants.overrideHost;
         final host = override ?? (defaultTargetPlatform == TargetPlatform.android ? '10.0.2.2' : 'localhost');
-        uri = Uri.parse(ApiConstants.scanBaseUrl.replaceFirst('localhost', host)).replace(path: '/predict');
+        candidateUris.add(Uri.parse(ApiConstants.scanBaseUrl.replaceFirst('localhost', host)).replace(path: '/predict'));
+        candidateUris.add(Uri.parse('http://$host:8000/predict'));
       }
 
-      try {
-        final http.MultipartRequest request = http.MultipartRequest('POST', uri);
-        if (kIsWeb) {
-          final bytes = await XFile(imagePath).readAsBytes();
-          request.files.add(http.MultipartFile.fromBytes(
-            'file',
-            bytes,
-            filename: 'leaf_scan.jpg',
-            contentType: MediaType('image', 'jpeg'),
-          ));
-        } else {
-          request.files.add(await http.MultipartFile.fromPath('file', imagePath, contentType: MediaType('image', 'jpeg')));
-        }
+      bool apiSuccess = false;
+      String? lastError;
 
-        final streamedResponse = await request.send().timeout(const Duration(seconds: 15));
-        final response = await http.Response.fromStream(streamedResponse);
+      for (final uri in candidateUris) {
+        try {
+          final http.MultipartRequest request = http.MultipartRequest('POST', uri);
+          if (kIsWeb) {
+            final bytes = await XFile(imagePath).readAsBytes();
+            request.files.add(http.MultipartFile.fromBytes(
+              'file',
+              bytes,
+              filename: 'leaf_scan.jpg',
+              contentType: MediaType('image', 'jpeg'),
+            ));
+          } else {
+            request.files.add(await http.MultipartFile.fromPath('file', imagePath, contentType: MediaType('image', 'jpeg')));
+          }
 
-        if (response.statusCode == 200) {
-          final data = jsonDecode(response.body) as Map<String, dynamic>;
-          diagnosis = data['prediction'] as String? ?? 'Tomato Early Blight';
-          confidence = (data['confidence'] as num?)?.toDouble() ?? 0.94;
-          healthScore = (data['health_score'] as num?)?.toDouble();
-        } else {
-          throw Exception('API error code ${response.statusCode}: ${response.body}');
+          final streamedResponse = await request.send().timeout(const Duration(seconds: 8));
+          final response = await http.Response.fromStream(streamedResponse);
+
+          if (response.statusCode == 200) {
+            final data = jsonDecode(response.body) as Map<String, dynamic>;
+            diagnosis = data['prediction'] as String? ?? 'Tomato Early Blight';
+            confidence = (data['confidence'] as num?)?.toDouble() ?? 0.94;
+            healthScore = (data['health_score'] as num?)?.toDouble();
+            apiSuccess = true;
+            break;
+          } else {
+            lastError = 'HTTP ${response.statusCode} from $uri';
+          }
+        } catch (e) {
+          lastError = '$e from $uri';
         }
-      } catch (e) {
-        debugPrint('[ERROR] AI REST API failed: $e');
+      }
+
+      if (!apiSuccess) {
+        debugPrint('[WARNING] Could not reach AI server via candidate endpoints. Last error: $lastError');
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('AI Inference error: $e')),
+            SnackBar(
+              content: Text('AI Backend server not reachable on localhost:8000. Ensure "python app.py" is running.'),
+              duration: const Duration(seconds: 4),
+            ),
           );
         }
         setState(() => _isProcessing = false);
