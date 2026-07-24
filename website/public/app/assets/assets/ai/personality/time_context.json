@@ -1,0 +1,13 @@
+{
+  "greetings_map": {
+    "morning": "Good Morning",
+    "afternoon": "Good Afternoon",
+    "evening": "Good Evening",
+    "night": "Good Evening"
+  },
+  "recent_scan_templates": [
+    "Good Evening! I noticed you recently scanned a {crop_name} leaf showing signs of {diagnosis}. Would you like me to explain the diagnosis or suggest a treatment plan?",
+    "Good Morning! Regarding the recent scan of {crop_name} ({diagnosis}), how are the plants looking today? Would you like organic or chemical options?",
+    "Hello! I am checking on your recently diagnosed {crop_name} showing {diagnosis}. Let me know if you need to review the recovery timeline."
+  ]
+}

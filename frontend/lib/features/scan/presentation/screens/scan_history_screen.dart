@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/utils/formatters.dart';
 import '../../../../shared/models/scan_result.dart';
+import '../../../../shared/services/hive_service.dart';
 import '../providers/scan_provider.dart';
 import 'scan_result_screen.dart';
 
@@ -15,12 +16,71 @@ class ScanHistoryScreen extends ConsumerStatefulWidget {
 
 class _ScanHistoryScreenState extends ConsumerState<ScanHistoryScreen> {
   final TextEditingController _searchController = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
   String _selectedFilter = 'All'; // All, Healthy, Diseased
+
+  // Pagination states
+  int _currentPage = 1;
+  static const int _pageSize = 10;
+  bool _isLoadingMore = false;
+  bool _hasMore = true;
+  String? _syncError;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_onScroll);
+  }
 
   @override
   void dispose() {
+    _scrollController.dispose();
     _searchController.dispose();
     super.dispose();
+  }
+
+  void _onScroll() {
+    if (_scrollController.position.pixels >= _scrollController.position.maxScrollExtent - 200) {
+      _loadMore();
+    }
+  }
+
+  Future<void> _loadMore() async {
+    if (_isLoadingMore || !_hasMore) return;
+    setState(() {
+      _isLoadingMore = true;
+    });
+
+    // Simulate page loading delay for premium production feel
+    await Future.delayed(const Duration(milliseconds: 600));
+
+    if (mounted) {
+      setState(() {
+        _currentPage++;
+        _isLoadingMore = false;
+      });
+    }
+  }
+
+  Future<void> _handleRefresh() async {
+    setState(() {
+      _syncError = null;
+    });
+    try {
+      ref.invalidate(scanHistoryProvider);
+      await Future.delayed(const Duration(milliseconds: 350));
+      if (mounted) {
+        setState(() {
+          _currentPage = 1;
+        });
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          _syncError = 'Failed to sync with cloud. Offline cache is loaded.';
+        });
+      }
+    }
   }
 
   void _confirmDelete(ScanResult scan) {
@@ -42,6 +102,12 @@ class _ScanHistoryScreenState extends ConsumerState<ScanHistoryScreen> {
               ref.invalidate(averageHealthProvider);
               ref.invalidate(weeklyScanCountProvider);
               if (mounted) {
+                setState(() {
+                  // Trigger reload slice
+                  if (_currentPage > 1 && (_currentPage - 1) * _pageSize >= HiveService.getScanHistoryBox().length) {
+                    _currentPage--;
+                  }
+                });
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('Scan record deleted.')),
                 );
@@ -74,12 +140,15 @@ class _ScanHistoryScreenState extends ConsumerState<ScanHistoryScreen> {
       return matchesQuery;
     }).toList();
 
+    // Paginate in-memory
+    final totalScansCount = filteredScans.length;
+    final paginatedLimit = _currentPage * _pageSize;
+    _hasMore = paginatedLimit < totalScansCount;
+    final paginatedScans = filteredScans.take(paginatedLimit).toList();
+
     return Scaffold(
-      backgroundColor: AppColors.background,
       appBar: AppBar(
         title: const Text('Scan Logs'),
-        backgroundColor: AppColors.surface,
-        foregroundColor: AppColors.onSurface,
         elevation: 0,
       ),
       body: Column(
@@ -92,7 +161,11 @@ class _ScanHistoryScreenState extends ConsumerState<ScanHistoryScreen> {
               children: [
                 TextField(
                   controller: _searchController,
-                  onChanged: (_) => setState(() {}),
+                  onChanged: (_) {
+                    setState(() {
+                      _currentPage = 1; // Reset pagination on search query edit
+                    });
+                  },
                   decoration: InputDecoration(
                     hintText: 'Search by crop, field, disease...',
                     prefixIcon: const Icon(Icons.search),
@@ -101,7 +174,9 @@ class _ScanHistoryScreenState extends ConsumerState<ScanHistoryScreen> {
                             icon: const Icon(Icons.clear),
                             onPressed: () {
                               _searchController.clear();
-                              setState(() {});
+                              setState(() {
+                                _currentPage = 1;
+                              });
                             },
                           )
                         : null,
@@ -129,71 +204,85 @@ class _ScanHistoryScreenState extends ConsumerState<ScanHistoryScreen> {
           ),
           
           Expanded(
-            child: filteredScans.isEmpty
-                ? _buildEmptyState()
-                : ListView.separated(
-                    padding: const EdgeInsets.all(16),
-                    itemCount: filteredScans.length,
-                    separatorBuilder: (_, __) => const SizedBox(height: 12),
-                    itemBuilder: (ctx, idx) {
-                      final scan = filteredScans[idx];
-                      final isHealthy = scan.diagnosis.toLowerCase().contains('healthy');
-                      final color = isHealthy ? AppColors.primary : AppColors.error;
+            child: RefreshIndicator(
+              onRefresh: _handleRefresh,
+              child: paginatedScans.isEmpty
+                  ? _buildEmptyOrErrorState()
+                  : ListView.separated(
+                      controller: _scrollController,
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      padding: const EdgeInsets.all(16),
+                      itemCount: paginatedScans.length + (_hasMore || _isLoadingMore ? 1 : 0),
+                      separatorBuilder: (_, __) => const SizedBox(height: 12),
+                      itemBuilder: (ctx, idx) {
+                        if (idx == paginatedScans.length) {
+                          return  Center(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(vertical: 16),
+                              child: CircularProgressIndicator(color: AppColors.primary),
+                            ),
+                          );
+                        }
 
-                      return Dismissible(
-                        key: Key(scan.id),
-                        direction: DismissDirection.endToStart,
-                        confirmDismiss: (_) async {
-                          _confirmDelete(scan);
-                          return false; // prevent auto-dismiss before dialog confirm
-                        },
-                        background: Container(
-                          alignment: Alignment.centerRight,
-                          padding: const EdgeInsets.only(right: 20),
-                          decoration: BoxDecoration(
-                            color: AppColors.error,
-                            borderRadius: BorderRadius.circular(12),
+                        final scan = paginatedScans[idx];
+                        final isHealthy = scan.diagnosis.toLowerCase().contains('healthy');
+                        final color = isHealthy ? AppColors.primary : AppColors.error;
+
+                        return Dismissible(
+                          key: Key(scan.id),
+                          direction: DismissDirection.endToStart,
+                          confirmDismiss: (_) async {
+                            _confirmDelete(scan);
+                            return false; // prevent auto-dismiss before dialog confirm
+                          },
+                          background: Container(
+                            alignment: Alignment.centerRight,
+                            padding: const EdgeInsets.only(right: 20),
+                            decoration: BoxDecoration(
+                              color: AppColors.error,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: const Icon(Icons.delete, color: Colors.white),
                           ),
-                          child: const Icon(Icons.delete, color: Colors.white),
-                        ),
-                        child: Card(
-                          margin: EdgeInsets.zero,
-                          clipBehavior: Clip.antiAlias,
-                          child: ListTile(
-                            leading: Container(
-                              width: 48,
-                              height: 48,
-                              decoration: BoxDecoration(
-                                color: color.withValues(alpha: 0.1),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Icon(
-                                isHealthy ? Icons.eco : Icons.pest_control,
-                                color: color,
-                              ),
-                            ),
-                            title: Text(
-                              '${scan.cropName} (${scan.fieldName})',
-                              style: AppTextStyles.labelMd.copyWith(fontWeight: FontWeight.bold),
-                            ),
-                            subtitle: Text(
-                              '${scan.diagnosis} • ${Formatters.relativeTime(scan.scannedAt)}',
-                              style: AppTextStyles.bodySm,
-                            ),
-                            trailing: const Icon(Icons.chevron_right),
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) => ScanResultScreen(scan: scan),
+                          child: Card(
+                            margin: EdgeInsets.zero,
+                            clipBehavior: Clip.antiAlias,
+                            child: ListTile(
+                              leading: Container(
+                                width: 48,
+                                height: 48,
+                                decoration: BoxDecoration(
+                                  color: color.withValues(alpha: 0.1),
+                                  borderRadius: BorderRadius.circular(8),
                                 ),
-                              );
-                            },
+                                child: Icon(
+                                  isHealthy ? Icons.eco : Icons.pest_control,
+                                  color: color,
+                                ),
+                              ),
+                              title: Text(
+                                '${scan.cropName} (${scan.fieldName})',
+                                style: AppTextStyles.labelMd.copyWith(fontWeight: FontWeight.bold),
+                              ),
+                              subtitle: Text(
+                                '${scan.diagnosis} • ${Formatters.relativeTime(scan.scannedAt)}',
+                                style: AppTextStyles.bodySm,
+                              ),
+                              trailing: const Icon(Icons.chevron_right),
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => ScanResultScreen(scan: scan),
+                                  ),
+                                );
+                              },
+                            ),
                           ),
-                        ),
-                      );
-                    },
-                  ),
+                        );
+                      },
+                    ),
+            ),
           ),
         ],
       ),
@@ -203,7 +292,12 @@ class _ScanHistoryScreenState extends ConsumerState<ScanHistoryScreen> {
   Widget _buildFilterChip(String filter) {
     final isSelected = _selectedFilter == filter;
     return GestureDetector(
-      onTap: () => setState(() => _selectedFilter = filter),
+      onTap: () {
+        setState(() {
+          _selectedFilter = filter;
+          _currentPage = 1; // Reset pagination on filter change
+        });
+      },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
         decoration: BoxDecoration(
@@ -218,6 +312,48 @@ class _ScanHistoryScreenState extends ConsumerState<ScanHistoryScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildEmptyOrErrorState() {
+    if (_syncError != null) {
+      return ListView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        children: [
+          SizedBox(height: MediaQuery.of(context).size.height * 0.2),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.all(32),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.cloud_off, size: 72, color: Colors.orange),
+                  const SizedBox(height: 16),
+                  const Text('Sync Error', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 8),
+                  Text(
+                    _syncError!,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(color: Colors.grey),
+                  ),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: _handleRefresh,
+                    child: const Text('Retry Sync'),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      );
+    }
+    return ListView(
+      physics: const AlwaysScrollableScrollPhysics(),
+      children: [
+        SizedBox(height: MediaQuery.of(context).size.height * 0.2),
+        _buildEmptyState(),
+      ],
     );
   }
 

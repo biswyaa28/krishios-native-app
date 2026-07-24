@@ -1,0 +1,20 @@
+{
+  "regions": {
+    "North": {
+      "default_soil": "Alluvial / Loamy",
+      "characteristics": "Highly fertile soil fed by river basis, ideal for wheat, maize, and solanaceous crops."
+    },
+    "South": {
+      "default_soil": "Clayey / Red Soil",
+      "characteristics": "High iron content, moderate water retention, ideal for fruit trees and millet."
+    },
+    "East": {
+      "default_soil": "Alluvial / Clay",
+      "characteristics": "Dense clay soils with high water retention, prone to root rot during heavy monsoons."
+    },
+    "West": {
+      "default_soil": "Sandy / Loam",
+      "characteristics": "Arid, fast-draining soils requiring organic mulches and high drip irrigation frequency."
+    }
+  }
+}

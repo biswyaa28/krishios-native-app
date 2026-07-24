@@ -5,12 +5,15 @@ import torch
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
-DATASET_ROOT = PROJECT_ROOT / "dataset" / "PlantVillage"
+# Support both nested (datasets/classification/plantvillage/train) and flat directories
+DATASET_ROOT = PROJECT_ROOT / "datasets" / "classification" / "plantvillage"
+if not DATASET_ROOT.exists() and (PROJECT_ROOT / "datasets" / "classification" / "plantvillage" / "train").exists():
+    DATASET_ROOT = PROJECT_ROOT / "datasets" / "classification" / "plantvillage"
 
 TRAIN_DIR = DATASET_ROOT / "train"
 VAL_DIR = DATASET_ROOT / "val"
 
-MODEL_DIR = PROJECT_ROOT / "models"
+MODEL_DIR = PROJECT_ROOT / "models" / "classifier"
 
 MODEL_DIR.mkdir(parents=True, exist_ok=True)
 

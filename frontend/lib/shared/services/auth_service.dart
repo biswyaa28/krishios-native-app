@@ -3,6 +3,10 @@ import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:krishios/shared/presentation/providers/language_provider.dart';
+import 'package:krishios/shared/providers/auth_provider.dart';
+import 'package:krishios/shared/services/hive_service.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -57,6 +61,33 @@ class AuthService {
       }
     }
     await _auth.signOut();
+  }
+
+  Future<void> performLogout(WidgetRef ref) async {
+    // 1. Clear secure auth tokens (FirebaseAuth + GoogleSignIn)
+    await signOut();
+
+    // 2. Reset Riverpod guest status and debug language bypass
+    ref.read(isGuestProvider.notifier).state = false;
+    ref.read(debugLanguageBypassProvider.notifier).state = false;
+
+    // 3. Clear localized session database boxes
+    await HiveService.getScanHistoryBox().clear();
+    await HiveService.getDraftsBox().clear();
+    await HiveService.getWeatherBox().clear();
+
+    // 4. Clear user preferences box while retaining theme and language presets
+    final prefsBox = HiveService.getUserPrefsBox();
+    final Map<String, dynamic> preserved = {};
+    for (final key in ['selected_language', 'has_selected_language', 'dark_mode']) {
+      if (prefsBox.containsKey(key)) {
+        preserved[key] = prefsBox.get(key);
+      }
+    }
+    await prefsBox.clear();
+    for (final entry in preserved.entries) {
+      await prefsBox.put(entry.key, entry.value);
+    }
   }
 
   Future<void> sendPasswordResetEmail(String email) async {

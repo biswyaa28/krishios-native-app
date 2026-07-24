@@ -1,0 +1,7 @@
+{
+  "weather_risks": {
+    "frost": "Temperature is below 5C. Risk of frost damage. Cover sensitive plants or irrigate lightly.",
+    "heatwave": "Temperature exceeds 38C. Heat drought stress. Provide deep watering and shade coverings.",
+    "heavy_rain": "Precipitation exceeds 20mm. High risk of soil nitrogen leaching and foliar disease spread."
+  }
+}

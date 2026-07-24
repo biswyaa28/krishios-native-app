@@ -1,70 +1,119 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const primary = Color(0xFF154212);
-  static const onPrimary = Color(0xFFFFFFFF);
-  static const primaryContainer = Color(0xFF2D5A27);
-  static const onPrimaryContainer = Color(0xFF9DD090);
-  static const primaryFixed = Color(0xFFBCF0AE);
-  static const primaryFixedDim = Color(0xFFA1D494);
-  static const onPrimaryFixed = Color(0xFF002201);
-  static const onPrimaryFixedVariant = Color(0xFF23501E);
+  static Color primary = const Color(0xFF154212);
+  static Color onPrimary = const Color(0xFFFFFFFF);
+  static Color primaryContainer = const Color(0xFF2D5A27);
+  static Color onPrimaryContainer = const Color(0xFF9DD090);
+  static Color primaryFixed = const Color(0xFFBCF0AE);
+  static Color primaryFixedDim = const Color(0xFFA1D494);
+  static Color onPrimaryFixed = const Color(0xFF002201);
+  static Color onPrimaryFixedVariant = const Color(0xFF23501E);
 
-  static const secondary = Color(0xFF7A5649);
-  static const onSecondary = Color(0xFFFFFFFF);
-  static const secondaryContainer = Color(0xFFFDCDBC);
-  static const onSecondaryContainer = Color(0xFF795548);
-  static const secondaryFixed = Color(0xFFFFDBCF);
-  static const secondaryFixedDim = Color(0xFFEBBCAC);
-  static const onSecondaryFixed = Color(0xFF2E150B);
-  static const onSecondaryFixedVariant = Color(0xFF603F33);
+  static Color secondary = const Color(0xFF7A5649);
+  static Color onSecondary = const Color(0xFFFFFFFF);
+  static Color secondaryContainer = const Color(0xFFFDCDBC);
+  static Color onSecondaryContainer = const Color(0xFF795548);
+  static Color secondaryFixed = const Color(0xFFFFDBCF);
+  static Color secondaryFixedDim = const Color(0xFFEBBCAC);
+  static Color onSecondaryFixed = const Color(0xFF2E150B);
+  static Color onSecondaryFixedVariant = const Color(0xFF603F33);
 
-  static const tertiary = Color(0xFF4F3500);
-  static const onTertiary = Color(0xFFFFFFFF);
-  static const tertiaryContainer = Color(0xFF6C4A00);
-  static const onTertiaryContainer = Color(0xFFFFB51E);
-  static const tertiaryFixed = Color(0xFFFFDEAC);
-  static const tertiaryFixedDim = Color(0xFFFFBA38);
-  static const onTertiaryFixed = Color(0xFF281900);
-  static const onTertiaryFixedVariant = Color(0xFF604100);
+  static Color tertiary = const Color(0xFF4F3500);
+  static Color onTertiary = const Color(0xFFFFFFFF);
+  static Color tertiaryContainer = const Color(0xFF6C4A00);
+  static Color onTertiaryContainer = const Color(0xFFFFB51E);
+  static Color tertiaryFixed = const Color(0xFFFFDEAC);
+  static Color tertiaryFixedDim = const Color(0xFFFFBA38);
+  static Color onTertiaryFixed = const Color(0xFF281900);
+  static Color onTertiaryFixedVariant = const Color(0xFF604100);
 
-  static const error = Color(0xFFBA1A1A);
-  static const onError = Color(0xFFFFFFFF);
-  static const errorContainer = Color(0xFFFFDAD6);
-  static const onErrorContainer = Color(0xFF93000A);
+  static Color error = const Color(0xFFBA1A1A);
+  static Color onError = const Color(0xFFFFFFFF);
+  static Color errorContainer = const Color(0xFFFFDAD6);
+  static Color onErrorContainer = const Color(0xFF93000A);
 
-  static const background = Color(0xFFF8FAF5);
-  static const onBackground = Color(0xFF191C1A);
-  static const surface = Color(0xFFF8FAF5);
-  static const onSurface = Color(0xFF191C1A);
-  static const surfaceVariant = Color(0xFFE1E3DE);
-  static const onSurfaceVariant = Color(0xFF42493E);
-  static const surfaceDim = Color(0xFFD8DBD6);
-  static const surfaceBright = Color(0xFFF8FAF5);
-  static const surfaceContainerLowest = Color(0xFFFFFFFF);
-  static const surfaceContainerLow = Color(0xFFF2F4EF);
-  static const surfaceContainer = Color(0xFFECEFEA);
-  static const surfaceContainerHigh = Color(0xFFE7E9E4);
-  static const surfaceContainerHighest = Color(0xFFE1E3DE);
+  static Color background = const Color(0xFFF8FAF5);
+  static Color onBackground = const Color(0xFF191C1A);
+  static Color surface = const Color(0xFFF8FAF5);
+  static Color onSurface = const Color(0xFF191C1A);
+  static Color surfaceVariant = const Color(0xFFE1E3DE);
+  static Color onSurfaceVariant = const Color(0xFF42493E);
+  static Color surfaceDim = const Color(0xFFD8DBD6);
+  static Color surfaceBright = const Color(0xFFF8FAF5);
+  static Color surfaceContainerLowest = const Color(0xFFFFFFFF);
+  static Color surfaceContainerLow = const Color(0xFFF2F4EF);
+  static Color surfaceContainer = const Color(0xFFECEFEA);
+  static Color surfaceContainerHigh = const Color(0xFFE7E9E4);
+  static Color surfaceContainerHighest = const Color(0xFFE1E3DE);
 
-  static const outline = Color(0xFF72796E);
-  static const outlineVariant = Color(0xFFC2C9BB);
+  static Color outline = const Color(0xFF72796E);
+  static Color outlineVariant = const Color(0xFFC2C9BB);
 
-  static const inverseSurface = Color(0xFF2E312E);
-  static const inverseOnSurface = Color(0xFFEFF1EC);
-  static const inversePrimary = Color(0xFFA1D494);
+  static Color inverseSurface = const Color(0xFF2E312E);
+  static Color inverseOnSurface = const Color(0xFFEFF1EC);
+  static Color inversePrimary = const Color(0xFFA1D494);
 
-  // Dark theme colors
-  static const darkScaffoldBackground = Color(0xFF0E1310);
-  static const darkSurface = Color(0xFF1A1E1A);
-  static const darkOnSurface = Color(0xFFE2E3DE);
-  static const darkSurfaceContainerHighest = Color(0xFF2D322D);
-  static const darkOnPrimary = Color(0xFF0A3A08);
-  static const darkOnSecondary = Color(0xFF442A1E);
-  static const darkOnTertiary = Color(0xFF3D2800);
-  static const darkError = Color(0xFFFFB4AB);
-  static const darkOnError = Color(0xFF690005);
-  static const darkOutline = Color(0xFF8C9386);
+  // Dark theme colors (Premium forest obsidian theme)
+  static const darkScaffoldBackground = Color(0xFF060907); // Very deep forest black
+  static const darkSurface = Color(0xFF0F1511); // Rich obsidian emerald
+  static const darkOnSurface = Color(0xFFECF3EE); // Minty off-white
+  static const darkSurfaceContainerHighest = Color(0xFF1A231C); // Emerald card surface
+  static const darkOnPrimary = Color(0xFF003910); // Deep forest text
+  static const darkOnSecondary = Color(0xFF412519); // Muted brown text
+  static const darkOnTertiary = Color(0xFF372A00); // Dark olive text
+  static const darkError = Color(0xFFE57373); // Muted warm red
+  static const darkOnError = Color(0xFF4A0002);
+  static const darkOutline = Color(0xFF4E5E52); // Muted moss green outline
+  static const darkPrimary = Color(0xFF65D58F); // Premium emerald accent green
+  static const darkPrimaryContainer = Color(0xFF0C5120); // Deep rich container green
+  static const darkOnPrimaryContainer = Color(0xFFB1F7BF); // High contrast mint green
+
+  static void updateTheme(bool isDark) {
+    if (isDark) {
+      primary = darkPrimary;
+      onPrimary = darkOnPrimary;
+      primaryContainer = darkPrimaryContainer;
+      onPrimaryContainer = darkOnPrimaryContainer;
+      background = darkScaffoldBackground;
+      surface = darkSurface;
+      onSurface = darkOnSurface;
+      surfaceVariant = darkSurfaceContainerHighest;
+      onSurfaceVariant = darkOnSurface;
+      surfaceDim = darkScaffoldBackground;
+      surfaceBright = darkSurface;
+      surfaceContainerLowest = darkSurface;
+      surfaceContainerLow = darkScaffoldBackground;
+      surfaceContainer = darkSurface;
+      surfaceContainerHigh = darkSurfaceContainerHighest;
+      surfaceContainerHighest = darkSurfaceContainerHighest;
+      outline = darkOutline;
+      outlineVariant = darkOutline;
+      error = darkError;
+      onError = darkOnError;
+    } else {
+      primary = const Color(0xFF154212);
+      onPrimary = const Color(0xFFFFFFFF);
+      primaryContainer = const Color(0xFF2D5A27);
+      onPrimaryContainer = const Color(0xFF9DD090);
+      background = const Color(0xFFF8FAF5);
+      surface = const Color(0xFFF8FAF5);
+      onSurface = const Color(0xFF191C1A);
+      surfaceVariant = const Color(0xFFE1E3DE);
+      onSurfaceVariant = const Color(0xFF42493E);
+      surfaceDim = const Color(0xFFD8DBD6);
+      surfaceBright = const Color(0xFFF8FAF5);
+      surfaceContainerLowest = const Color(0xFFFFFFFF);
+      surfaceContainerLow = const Color(0xFFF2F4EF);
+      surfaceContainer = const Color(0xFFECEFEA);
+      surfaceContainerHigh = const Color(0xFFE7E9E4);
+      surfaceContainerHighest = const Color(0xFFE1E3DE);
+      outline = const Color(0xFF72796E);
+      outlineVariant = const Color(0xFFC2C9BB);
+      error = const Color(0xFFBA1A1A);
+      onError = const Color(0xFFFFFFFF);
+    }
+  }
 }
 
 class AppTextStyles {
@@ -155,7 +204,7 @@ class AppTheme {
       useMaterial3: true,
       colorScheme: colorScheme,
       scaffoldBackgroundColor: AppColors.background,
-      appBarTheme: const AppBarTheme(
+      appBarTheme: AppBarTheme(
         backgroundColor: AppColors.surface,
         foregroundColor: AppColors.onSurface,
         elevation: 0,
@@ -176,11 +225,11 @@ class AppTheme {
         }),
         iconTheme: WidgetStateProperty.resolveWith((states) {
           if (states.contains(WidgetState.selected)) {
-            return const IconThemeData(
+            return IconThemeData(
               color: AppColors.onPrimaryContainer,
             );
           }
-          return const IconThemeData(
+          return IconThemeData(
             color: AppColors.onSurfaceVariant,
           );
         }),
@@ -194,10 +243,10 @@ class AppTheme {
       brightness: Brightness.dark,
       scaffoldBackgroundColor: AppColors.darkScaffoldBackground,
       colorScheme: ColorScheme.dark(
-        primary: AppColors.inversePrimary,
+        primary: AppColors.darkPrimary,
         onPrimary: AppColors.darkOnPrimary,
-        primaryContainer: AppColors.onPrimaryFixedVariant,
-        onPrimaryContainer: AppColors.primaryFixed,
+        primaryContainer: AppColors.darkPrimaryContainer,
+        onPrimaryContainer: AppColors.darkOnPrimaryContainer,
         secondary: AppColors.secondaryFixedDim,
         onSecondary: AppColors.darkOnSecondary,
         secondaryContainer: AppColors.onSecondaryFixedVariant,
@@ -217,7 +266,7 @@ class AppTheme {
         outline: AppColors.darkOutline,
         outlineVariant: AppColors.onSurfaceVariant,
       ),
-      appBarTheme: const AppBarTheme(
+      appBarTheme: AppBarTheme(
         backgroundColor: AppColors.darkSurface,
         foregroundColor: AppColors.darkOnSurface,
         elevation: 0,
@@ -238,11 +287,11 @@ class AppTheme {
         }),
         iconTheme: WidgetStateProperty.resolveWith((states) {
           if (states.contains(WidgetState.selected)) {
-            return const IconThemeData(
+            return IconThemeData(
               color: AppColors.primaryFixed,
             );
           }
-          return const IconThemeData(
+          return IconThemeData(
             color: AppColors.outlineVariant,
           );
         }),

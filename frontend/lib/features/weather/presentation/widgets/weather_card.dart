@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:krishios/core/theme/app_theme.dart';
 import 'package:krishios/core/utils/formatters.dart';
 import 'package:krishios/shared/models/weather.dart';
+import 'package:krishios/core/providers/theme_provider.dart';
 import '../providers/weather_provider.dart';
 
 class WeatherCard extends ConsumerWidget {
@@ -10,6 +11,7 @@ class WeatherCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.watch(themeModeProvider);
     final weatherAsync = ref.watch(weatherProvider);
     final locationName = ref.watch(locationNameProvider);
 
@@ -53,7 +55,7 @@ class WeatherCard extends ConsumerWidget {
                 letterSpacing: 1,
               ),
             ),
-            const Icon(Icons.wb_cloudy_outlined, color: AppColors.tertiaryFixedDim, size: 24),
+            Icon(Icons.wb_cloudy_outlined, color: AppColors.tertiaryFixedDim, size: 24),
           ],
         ),
         const SizedBox(height: 16),
@@ -84,7 +86,7 @@ class WeatherCard extends ConsumerWidget {
                 letterSpacing: 1,
               ),
             ),
-            const Icon(Icons.wb_cloudy_outlined, color: AppColors.tertiaryFixedDim, size: 24),
+            Icon(Icons.wb_cloudy_outlined, color: AppColors.tertiaryFixedDim, size: 24),
           ],
         ),
         const SizedBox(height: 8),
@@ -100,7 +102,7 @@ class WeatherCard extends ConsumerWidget {
             Text(locationName ?? weather.location, style: AppTextStyles.bodySm),
           ],
         ),
-        const Divider(height: 24, color: AppColors.outlineVariant),
+        Divider(height: 24, color: AppColors.outlineVariant),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

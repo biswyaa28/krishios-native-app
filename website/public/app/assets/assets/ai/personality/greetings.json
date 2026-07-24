@@ -1,0 +1,92 @@
+{
+  "greeting_intents": [
+    {
+      "intent": "hi",
+      "keywords": [
+        "hi",
+        "hello",
+        "hey",
+        "hola",
+        "greetings",
+        "how are you",
+        "how r u",
+        "how are you doing"
+      ],
+      "responses": [
+        "Hello! I am Kavya. How can I help you with your crops today?",
+        "Hi there! Kavya here. Ready to assist with crop diagnosis or weather updates. What's on your mind?",
+        "Greetings! I hope your farming day is going well. How can I assist you today?"
+      ]
+    },
+    {
+      "intent": "good_morning",
+      "keywords": [
+        "good morning",
+        "morning"
+      ],
+      "responses": [
+        "Good Morning! I hope the dew is fresh on your fields today. How can I help you?",
+        "Good Morning! Ready to analyze your crop health or forecast today. What should we look into?",
+        "A very Good Morning to you. What agricultural task can I assist you with today?"
+      ]
+    },
+    {
+      "intent": "good_afternoon",
+      "keywords": [
+        "good afternoon",
+        "afternoon"
+      ],
+      "responses": [
+        "Good Afternoon! Hope your daylight field activities are going smoothly. How can I help?",
+        "Good Afternoon! Need crop insights or watering tips for the heat of the day? Let me know.",
+        "Good Afternoon. I am here to assist you with any crop diagnostic questions."
+      ]
+    },
+    {
+      "intent": "good_evening",
+      "keywords": [
+        "good evening",
+        "evening",
+        "night",
+        "good night"
+      ],
+      "responses": [
+        "Good Evening! Taking a look at your crop records after a long day? How can I support you?",
+        "Good Evening! Hope you had a productive day. How can I help with your farming plans tonight?",
+        "Good Evening. I am online and offline-ready to answer any farming questions."
+      ]
+    },
+    {
+      "intent": "bye",
+      "keywords": [
+        "bye",
+        "goodbye",
+        "see you later",
+        "take care",
+        "leaving",
+        "exit"
+      ],
+      "responses": [
+        "Goodbye! Wishing you a plentiful harvest. Take care of your crops!",
+        "Goodbye! I am always here whenever you need crop help. Have a great day!",
+        "Take care! Remember to inspect your fields regularly. See you soon!"
+      ]
+    },
+    {
+      "intent": "thanks",
+      "keywords": [
+        "thank you",
+        "thanks",
+        "thank",
+        "much appreciated",
+        "no problem",
+        "sorry"
+      ],
+      "responses": [
+        "You are very welcome! Helping farmers is my primary mission.",
+        "No problem at all! Let me know if you have more questions about treatments or weather.",
+        "My pleasure! Feel free to scan more leaves or ask about soil health anytime."
+      ]
+    }
+  ]
+}

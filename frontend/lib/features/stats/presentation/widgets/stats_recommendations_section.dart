@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/theme/app_theme.dart';
+import '../../../../core/providers/theme_provider.dart';
 
-class StatsRecommendationsSection extends StatelessWidget {
+class StatsRecommendationsSection extends ConsumerWidget {
   const StatsRecommendationsSection({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    // Watch themeModeProvider to trigger rebuilds on theme toggle
+    ref.watch(themeModeProvider);
+
     return Container(
       decoration: BoxDecoration(
         color: AppColors.surfaceContainerLowest,
@@ -24,14 +29,14 @@ class StatsRecommendationsSection extends StatelessWidget {
           Container(
             width: double.infinity,
             padding: const EdgeInsets.all(16),
-            decoration: const BoxDecoration(
+            decoration:  BoxDecoration(
               border: Border(
                 bottom: BorderSide(color: AppColors.outlineVariant, width: 0.3),
               ),
             ),
             child: Row(
               children: [
-                const Icon(Icons.lightbulb_outline,
+                 Icon(Icons.lightbulb_outline,
                     color: AppColors.tertiaryFixedDim, size: 20),
                 const SizedBox(width: 8),
                 Text(
@@ -41,7 +46,7 @@ class StatsRecommendationsSection extends StatelessWidget {
               ],
             ),
           ),
-          const InsightItem(
+           InsightItem(
             icon: Icons.science,
             iconBg: AppColors.errorContainer,
             iconColor: AppColors.error,
@@ -50,8 +55,8 @@ class StatsRecommendationsSection extends StatelessWidget {
                 'Recent scans indicate mild chlorosis. A targeted nitrogen application is recommended within 48 hours to prevent yield loss.',
             actionLabel: 'Schedule Task',
           ),
-          const Divider(height: 1, color: AppColors.outlineVariant),
-          const InsightItem(
+          Divider(height: 1, color: AppColors.outlineVariant),
+           InsightItem(
             icon: Icons.water_drop,
             iconBg: AppColors.secondaryContainer,
             iconColor: AppColors.onSecondaryContainer,

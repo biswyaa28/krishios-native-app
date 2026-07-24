@@ -57,7 +57,7 @@ class LifetimeScansCard extends StatelessWidget {
                   fit: BoxFit.scaleDown,
                   child: Row(
                     children: [
-                      const Icon(Icons.trending_up,
+                       Icon(Icons.trending_up,
                           size: 16, color: AppColors.primaryContainer),
                       const SizedBox(width: 4),
                       Text('+$weeklyCount this week', style: AppTextStyles.labelSm),
@@ -70,11 +70,11 @@ class LifetimeScansCard extends StatelessWidget {
           Container(
             width: 40,
             height: 40,
-            decoration: const BoxDecoration(
+            decoration:  BoxDecoration(
               color: AppColors.primaryContainer,
               shape: BoxShape.circle,
             ),
-            child: const Icon(Icons.shutter_speed,
+            child:  Icon(Icons.shutter_speed,
                 color: AppColors.onPrimaryContainer, size: 20),
           ),
         ],

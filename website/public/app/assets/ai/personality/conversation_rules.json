@@ -1,0 +1,26 @@
+{
+  "greeting_rules": {
+    "check_recent_scan": true,
+    "inject_local_time": true
+  },
+  "unknown_fallback": {
+    "responses": [
+      "I could not match that query directly with my offline knowledge base. Please try scanning a leaf or asking questions about weather, crop symptoms, or treatment protocols.",
+      "I'm specialized in farming, crop diseases, and weather. Could you rephrase your question using agricultural terms?"
+    ]
+  },
+  "response_schema": {
+    "fields": [
+      "title",
+      "message",
+      "quick_actions",
+      "voice_text",
+      "confidence",
+      "priority"
+    ]
+  },
+  "formatting": {
+    "bold_titles": false,
+    "clean_bullet_points": true
+  }
+}

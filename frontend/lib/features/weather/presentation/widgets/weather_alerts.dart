@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:krishios/core/theme/app_theme.dart';
+import 'package:krishios/core/providers/theme_provider.dart';
 import '../providers/weather_provider.dart';
 
 class WeatherAlerts extends ConsumerWidget {
@@ -8,6 +9,7 @@ class WeatherAlerts extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.watch(themeModeProvider);
     final weatherAsync = ref.watch(weatherProvider);
 
     return weatherAsync.when(
@@ -36,7 +38,7 @@ class WeatherAlerts extends ConsumerWidget {
             children: [
               Row(
                 children: [
-                  const Icon(Icons.warning_amber, color: AppColors.error, size: 20),
+                  Icon(Icons.warning_amber, color: AppColors.error, size: 20),
                   const SizedBox(width: 8),
                   Text('FARMING ALERTS', style: AppTextStyles.labelSm.copyWith(color: AppColors.error, letterSpacing: 1)),
                 ],

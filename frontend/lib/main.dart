@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'core/theme/app_theme.dart';
@@ -10,7 +11,14 @@ import 'features/home/presentation/screens/home_screen.dart';
 import 'features/scan/presentation/screens/crop_scan_screen.dart';
 import 'features/stats/presentation/screens/stats_screen.dart';
 import 'features/community/presentation/screens/community_screen.dart';
-import 'features/auth/presentation/screens/auth_screen.dart';
+import 'features/auth/presentation/screens/platform_auth_screen.dart';
+import 'features/auth/presentation/screens/language_selection_screen.dart';
+import 'package:krishios/shared/presentation/providers/language_provider.dart';
+import 'package:krishios/shared/services/translation_service.dart';
+import 'shared/presentation/widgets/navigation_drawer.dart';
+import 'shared/presentation/widgets/krishi_ai_fab.dart';
+import 'shared/presentation/providers/navigation_provider.dart';
+import 'responsive/responsive_shell.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,6 +42,7 @@ class KrishiOSApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final themeMode = ref.watch(themeModeProvider);
+    AppColors.updateTheme(themeMode == ThemeMode.dark);
     return MaterialApp(
       title: 'KrishiOS',
       debugShowCheckedModeBanner: false,
@@ -57,14 +66,21 @@ class MainShell extends ConsumerWidget {
     // 1. Ensure the user sees the Splash screen for at least 1.5s on fresh launch
     final splashDelay = ref.watch(splashDelayProvider);
     if (splashDelay.isLoading) {
-      return const Scaffold(
-        backgroundColor: AppColors.background,
+      return  Scaffold(
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.agriculture, color: AppColors.primary, size: 72),
-              SizedBox(height: 16),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image.asset(
+                  'assets/brand/app_icon.png',
+                  width: 96,
+                  height: 96,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              const SizedBox(height: 16),
               Text(
                 'KrishiOS',
                 style: TextStyle(
@@ -82,21 +98,36 @@ class MainShell extends ConsumerWidget {
       );
     }
 
+    final hasSelectedLang = ref.watch(hasSelectedLanguageProvider);
+    final debugBypass = ref.watch(debugLanguageBypassProvider);
+    final shouldShowLang = kDebugMode ? !debugBypass : !hasSelectedLang;
+
+    if (shouldShowLang) {
+      return const LanguageSelectionScreen();
+    }
+
     final isGuest = ref.watch(isGuestProvider);
     if (isGuest) {
-      return const _MainShellContent();
+      return const ResponsiveShell(mobileShell: _MainShellContent());
     }
 
     final authState = ref.watch(authStateProvider);
     return authState.when(
-      loading: () => const Scaffold(
-        backgroundColor: AppColors.background,
+      loading: () =>  Scaffold(
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.agriculture, color: AppColors.primary, size: 72),
-              SizedBox(height: 16),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image.asset(
+                  'assets/brand/app_icon.png',
+                  width: 96,
+                  height: 96,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              const SizedBox(height: 16),
               Text(
                 'KrishiOS',
                 style: TextStyle(
@@ -112,64 +143,62 @@ class MainShell extends ConsumerWidget {
           ),
         ),
       ),
-      error: (_, __) => const AuthScreen(),
+      error: (_, __) => const PlatformAuthScreen(),
       data: (user) {
-        if (user == null) return const AuthScreen();
-        return const _MainShellContent();
+        if (user == null) return const PlatformAuthScreen();
+        return const ResponsiveShell(mobileShell: _MainShellContent());
       },
     );
   }
 }
 
-class _MainShellContent extends StatefulWidget {
+class _MainShellContent extends ConsumerWidget {
   const _MainShellContent();
 
   @override
-  State<_MainShellContent> createState() => _MainShellContentState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final activeLang = ref.watch(languageProvider);
+    final currentIndex = ref.watch(mainTabIndexProvider);
 
-class _MainShellContentState extends State<_MainShellContent> {
-  int _currentIndex = 0;
+    final List<Widget> screens = const [
+      HomeScreen(),
+      CropScanScreen(),
+      StatsScreen(),
+      CommunityScreen(),
+    ];
 
-  final List<Widget> _screens = const [
-    HomeScreen(),
-    CropScanScreen(),
-    StatsScreen(),
-    CommunityScreen(),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const KrishiNavigationDrawer(),
+      floatingActionButton: const KrishiAiFab(),
       body: IndexedStack(
-        index: _currentIndex,
-        children: _screens,
+        index: currentIndex,
+        children: screens,
       ),
       bottomNavigationBar: NavigationBar(
-        selectedIndex: _currentIndex,
+        selectedIndex: currentIndex,
         onDestinationSelected: (index) {
-          setState(() => _currentIndex = index);
+          ref.read(mainTabIndexProvider.notifier).state = index;
         },
-        destinations: const [
+        destinations: [
           NavigationDestination(
-            icon: Icon(Icons.home_outlined),
-            selectedIcon: Icon(Icons.home),
-            label: 'Home',
+            icon: const Icon(Icons.home_outlined),
+            selectedIcon: const Icon(Icons.home),
+            label: TranslationService.translate('home_tab', activeLang),
           ),
           NavigationDestination(
-            icon: Icon(Icons.shutter_speed),
-            selectedIcon: Icon(Icons.shutter_speed),
-            label: 'Scan',
+            icon: const Icon(Icons.shutter_speed),
+            selectedIcon: const Icon(Icons.shutter_speed),
+            label: TranslationService.translate('scan_tab', activeLang),
           ),
           NavigationDestination(
-            icon: Icon(Icons.query_stats_outlined),
-            selectedIcon: Icon(Icons.query_stats),
-            label: 'Stats',
+            icon: const Icon(Icons.query_stats_outlined),
+            selectedIcon: const Icon(Icons.query_stats),
+            label: TranslationService.translate('stats_tab', activeLang),
           ),
           NavigationDestination(
-            icon: Icon(Icons.group_outlined),
-            selectedIcon: Icon(Icons.group),
-            label: 'Community',
+            icon: const Icon(Icons.group_outlined),
+            selectedIcon: const Icon(Icons.group),
+            label: TranslationService.translate('community_tab', activeLang),
           ),
         ],
       ),

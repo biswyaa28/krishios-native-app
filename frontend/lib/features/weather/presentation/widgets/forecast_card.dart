@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:krishios/core/theme/app_theme.dart';
 import 'package:intl/intl.dart';
+import 'package:krishios/core/providers/theme_provider.dart';
 import '../providers/weather_provider.dart';
 
 class ForecastCard extends ConsumerWidget {
@@ -9,6 +10,7 @@ class ForecastCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.watch(themeModeProvider);
     final forecastAsync = ref.watch(forecastProvider);
 
     return forecastAsync.when(

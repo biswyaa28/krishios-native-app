@@ -1,183 +1,88 @@
-####################################
-# Python
-####################################
+# ==============================================================================
+# KrishiOS Master GitIgnore
+# ==============================================================================
 
+# ------------------------------------------------------------------------------
+# 1. Heavy Machine Learning Datasets & Training Artifacts
+# ------------------------------------------------------------------------------
+ai/datasets/
+ai/exports/
+ai/outputs/runs/
+ai/outputs/*.jpg
+ai/outputs/*.png
+*.zip
+*.tar.gz
+*.7z
+*.rar
+
+# ------------------------------------------------------------------------------
+# 2. Environment Variables & Secrets
+# ------------------------------------------------------------------------------
+.env
+.env.local
+.env.development
+.env.production
+*.pem
+*.key
+*.p12
+*.keystore
+service-account*.json
+google-services.json
+GoogleService-Info.plist
+
+# ------------------------------------------------------------------------------
+# 3. Python Backend & ML Virtual Environments
+# ------------------------------------------------------------------------------
 __pycache__/
 *.py[cod]
-*.pyo
-*.pyd
-
-####################################
-# Virtual Environment
-####################################
-
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
 venv/
 .venv/
 env/
-
-####################################
-# Dataset
-####################################
-
-ai/dataset/
-!ai/dataset/.gitkeep
-
-####################################
-# Trained Models
-####################################
-
-ai/models/*
-!ai/models/model.ts
-*.keras
-*.h5
-*.tflite
-*.onnx
-*.pt
-*.pth
-
-####################################
-# Jupyter
-####################################
-
+ENV/
 .ipynb_checkpoints/
 
-####################################
-# VS Code
-####################################
-
-.vscode/
-
-####################################
-# macOS
-####################################
-
-.DS_Store
-
-####################################
-# Windows
-####################################
-
-Thumbs.db
-Desktop.ini
-
-####################################
-# Logs
-####################################
-
-*.log
-
-####################################
-# Build
-####################################
-
-build/
-dist/
-
-####################################
-# Temporary
-####################################
-
-*.tmp
-*.bak
-*.cache
-
-####################################
-# Environment
-####################################
-
-.env
-
-####################################
-# TensorBoard
-####################################
-
-logs/
-
-####################################
-# Pytest
-####################################
-
-.pytest_cache/
-
-####################################
-# Mypy
-####################################
-
-.mypy_cache/
-
-####################################
-# Flutter & Dart
-####################################
-
-*.class
-*.swp
-.atom/
-.build/
-.buildlog/
-.history
-.svn/
-.swiftpm/
-migrate_working_dir/
-
-# IntelliJ / Android Studio related
-*.iml
-*.ipr
-*.iws
-.idea/
-
-# Flutter build outputs
-**/doc/api/
-**/ios/Flutter/.last_build_id
-.dart_tool/
-.flutter-plugins-dependencies
-.pub-cache/
-.pub/
-frontend/build/
-frontend/coverage/
-
-# Symbols & Obfuscation
-app.*.symbols
-app.*.map.json
-
-# Android Studio builds
-frontend/android/app/debug/
-frontend/android/app/profile/
-frontend/android/app/release/
-
-# Worktrees and screenshots
-.worktrees/
-
-# Astro Web Landing Page
-web/node_modules/
-web/dist/
-web/.astro/
-
-# Tooling Caches
-superpowers/
-**/superpowers/
-docs/superpowers/
-**/docs/superpowers/
-
-# dependencies
+# ------------------------------------------------------------------------------
+# 4. Node.js & Next.js Web Platform
+# ------------------------------------------------------------------------------
+website/node_modules/
+website/.next/
+website/out/
 node_modules/
-
-# build output
-dist/
-.astro/
-
-# environment
-.env
-.env.production
-
-# macOS
-.DS_Store
-
-# editor
-.vscode/
-.idea/
-
-# logs
+.next/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
+package-lock.json
+
+# ------------------------------------------------------------------------------
+# 5. Flutter & Dart Builds
+# ------------------------------------------------------------------------------
+frontend/.dart_tool/
+frontend/build/
+frontend/.pub/
+frontend/.pub-cache/
+frontend/ephemeral/
+.dart_tool/
+build/
+.pub/
+.pub-cache/
+
+# ------------------------------------------------------------------------------
+# 6. IDE & Operating System Files
+# ------------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.idea/
+.vscode/
+*.suo
+*.user
+*.userossc
+*.sln.docstates
+*.swp
+*~

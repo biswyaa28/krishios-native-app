@@ -20,7 +20,9 @@ import '../../presentation/providers/scan_provider.dart';
 import '../../../weather/presentation/providers/weather_provider.dart';
 import '../widgets/corner_bracket.dart';
 import '../widgets/scanning_line.dart';
-import '../../data/treatment_data.dart';
+import 'package:krishios/shared/presentation/widgets/krishi_mobile_header.dart';
+import 'package:krishios/shared/services/translation_service.dart';
+import 'package:krishios/shared/presentation/providers/language_provider.dart';
 
 class CropScanScreen extends ConsumerStatefulWidget {
   const CropScanScreen({super.key});
@@ -164,13 +166,8 @@ class _CropScanScreenState extends ConsumerState<CropScanScreen> {
 
       // Treatment lookup by disease name
 
-      String treatment = 'Inspect plant thoroughly. Isolate if symptoms worsen. Consult local extension service.';
-      for (final entry in treatmentMap.entries) {
-        if (disease.toLowerCase().contains(entry.key)) {
-          treatment = entry.value;
-          break;
-        }
-      }
+      final treatmentObj = TranslationService.translateTreatment(disease, 'en');
+      final String treatment = treatmentObj.directTreatment;
 
       final scanResult = ScanResult(
         id: scanId,
@@ -273,6 +270,7 @@ class _CropScanScreenState extends ConsumerState<CropScanScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final activeLang = ref.watch(languageProvider);
     return Scaffold(
       backgroundColor: AppColors.background,
       body: Stack(
@@ -280,32 +278,8 @@ class _CropScanScreenState extends ConsumerState<CropScanScreen> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Container(
-                color: AppColors.surface.withValues(alpha: 0.8),
-                child: SafeArea(
-                  bottom: false,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: SizedBox(
-                      height: 64,
-                      child: Row(
-                        children: [
-                          const Icon(Icons.agriculture, color: AppColors.primary, size: 28),
-                          const SizedBox(width: 8),
-                          Text(
-                            'KrishiOS',
-                            style: AppTextStyles.headlineMd.copyWith(
-                              color: AppColors.primary,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const Spacer(),
-                          const Icon(Icons.help_outline, color: AppColors.onSurface),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
+              KrishiMobileHeader(
+                subtitle: TranslationService.translate('scan_title', activeLang),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
@@ -463,7 +437,7 @@ class _CropScanScreenState extends ConsumerState<CropScanScreen> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const CircularProgressIndicator(color: AppColors.primary),
+                        CircularProgressIndicator(color: AppColors.primary),
                         const SizedBox(height: 16),
                         Text(
                           _statusMessage,

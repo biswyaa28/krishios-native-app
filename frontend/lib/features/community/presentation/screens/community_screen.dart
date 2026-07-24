@@ -10,6 +10,9 @@ import '../widgets/community_post_card.dart';
 import '../widgets/community_search_bar.dart';
 import '../widgets/category_chips.dart';
 import 'post_detail_screen.dart';
+import 'package:krishios/shared/presentation/providers/language_provider.dart';
+import 'package:krishios/shared/presentation/widgets/krishi_mobile_header.dart';
+import 'package:krishios/shared/services/translation_service.dart';
 
 class CommunityScreen extends ConsumerStatefulWidget {
   const CommunityScreen({super.key});
@@ -41,107 +44,83 @@ class _CommunityScreenState extends ConsumerState<CommunityScreen> {
     final bottomInset = MediaQuery.of(context).padding.bottom;
     final postsAsync = ref.watch(postsProvider);
     final selectedCategory = ref.watch(selectedCategoryProvider);
+    final activeLang = ref.watch(languageProvider);
 
     return Stack(
       children: [
         ListView(
-          padding: EdgeInsets.fromLTRB(16, 0, 16, 100 + bottomInset),
+          padding: EdgeInsets.fromLTRB(0, 0, 0, 100 + bottomInset),
           children: [
-            Container(
-              decoration: BoxDecoration(
-                color: AppColors.surface,
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.primaryContainer.withValues(alpha: 0.08),
-                    blurRadius: 8,
-                    offset: const Offset(0, 4),
+            KrishiMobileHeader(
+              subtitle: TranslationService.translate('community_forum', activeLang),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                children: [
+                  const SizedBox(height: 16),
+                  CommunitySearchBar(
+                    controller: _searchController,
+                    onChanged: (value) => setState(() => _searchQuery = value),
                   ),
-                ],
-              ),
-              child: SafeArea(
-                bottom: false,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: SizedBox(
-                    height: 64,
-                    child: Row(
-                      children: [
-                        const Icon(Icons.agriculture,
-                            color: AppColors.primary, size: 28),
-                        const SizedBox(width: 8),
-                        Text(
-                          'KrishiOS',
-                          style: AppTextStyles.headlineMd.copyWith(
-                            color: AppColors.primary,
-                            fontWeight: FontWeight.bold,
+                  const SizedBox(height: 16),
+                  CategoryChips(
+                    categories: _categories,
+                    selected: selectedCategory,
+                    onSelected: (cat) =>
+                        ref.read(selectedCategoryProvider.notifier).state = cat,
+                  ),
+                  const SizedBox(height: 20),
+                  postsAsync.when(
+                    data: (posts) {
+                      final filtered = _applySearch(posts);
+                      if (filtered.isEmpty) {
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 48),
+                          child: Center(
+                            child: Column(
+                              children: [
+                                Icon(Icons.search_off,
+                                    size: 48,
+                                    color: AppColors.onSurfaceVariant
+                                        .withValues(alpha: 0.5)),
+                                const SizedBox(height: 12),
+                                Text('No posts found',
+                                    style: AppTextStyles.bodyMd.copyWith(
+                                        color: AppColors.onSurfaceVariant)),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        );
+                      }
+                      return Column(
+                        children: filtered
+                            .map(
+                              (post) => Padding(
+                                padding: const EdgeInsets.only(bottom: 16),
+                                child: PostCard(
+                                  post: post,
+                                  onTap: () => _openPostDetail(context, post),
+                                ),
+                              ),
+                            )
+                            .toList(),
+                      );
+                    },
+                    loading: () => const Padding(
+                      padding: EdgeInsets.only(top: 48),
+                      child: Center(child: CircularProgressIndicator()),
                     ),
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
-            CommunitySearchBar(
-              controller: _searchController,
-              onChanged: (value) => setState(() => _searchQuery = value),
-            ),
-            const SizedBox(height: 16),
-            CategoryChips(
-              categories: _categories,
-              selected: selectedCategory,
-              onSelected: (cat) =>
-                  ref.read(selectedCategoryProvider.notifier).state = cat,
-            ),
-            const SizedBox(height: 20),
-            postsAsync.when(
-              data: (posts) {
-                final filtered = _applySearch(posts);
-                if (filtered.isEmpty) {
-                  return Padding(
-                    padding: const EdgeInsets.only(top: 48),
-                    child: Center(
-                      child: Column(
-                        children: [
-                          Icon(Icons.search_off,
-                              size: 48,
-                              color: AppColors.onSurfaceVariant
-                                  .withValues(alpha: 0.5)),
-                          const SizedBox(height: 12),
-                          Text('No posts found',
-                              style: AppTextStyles.bodyMd.copyWith(
-                                  color: AppColors.onSurfaceVariant)),
-                        ],
+                    error: (e, _) => Padding(
+                      padding: const EdgeInsets.only(top: 48),
+                      child: Center(
+                        child: Text('Error loading posts: $e',
+                            style: AppTextStyles.bodyMd
+                                .copyWith(color: AppColors.error)),
                       ),
                     ),
-                  );
-                }
-                return Column(
-                  children: filtered
-                      .map(
-                        (post) => Padding(
-                          padding: const EdgeInsets.only(bottom: 16),
-                          child: PostCard(
-                            post: post,
-                            onTap: () => _openPostDetail(context, post),
-                          ),
-                        ),
-                      )
-                      .toList(),
-                );
-              },
-              loading: () => const Padding(
-                padding: EdgeInsets.only(top: 48),
-                child: Center(child: CircularProgressIndicator()),
-              ),
-              error: (e, _) => Padding(
-                padding: const EdgeInsets.only(top: 48),
-                child: Center(
-                  child: Text('Error loading posts: $e',
-                      style: AppTextStyles.bodyMd
-                          .copyWith(color: AppColors.error)),
-                ),
+                  ),
+                ],
               ),
             ),
           ],

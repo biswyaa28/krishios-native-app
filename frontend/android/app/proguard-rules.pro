@@ -26,3 +26,9 @@
 # General Android
 -dontwarn java.lang.instrument.ClassFileTransformer
 -dontwarn sun.misc.SignalHandler
+
+# ONNX Runtime & Native C++ Bindings Retention
+-keep class ai.onnxruntime.** { *; }
+-keep class com.sun.jna.** { *; }
+-dontwarn ai.onnxruntime.**
+

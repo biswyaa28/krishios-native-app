@@ -169,7 +169,7 @@ class PostCard extends ConsumerWidget {
                   onTap: onTap,
                   child: Row(
                     children: [
-                      const Icon(
+                       Icon(
                         Icons.chat_bubble_outline,
                         size: 20,
                         color: AppColors.onSurfaceVariant,

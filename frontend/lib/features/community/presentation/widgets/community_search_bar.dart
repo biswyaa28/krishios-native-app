@@ -49,7 +49,7 @@ class _CommunitySearchBarState extends State<CommunitySearchBar> {
       ),
       child: Row(
         children: [
-          const Padding(
+           Padding(
             padding: EdgeInsets.only(left: 16),
             child: Icon(Icons.search, color: AppColors.onSurfaceVariant),
           ),
@@ -58,7 +58,7 @@ class _CommunitySearchBarState extends State<CommunitySearchBar> {
             child: TextField(
               controller: widget.controller,
               onChanged: widget.onChanged,
-              decoration: const InputDecoration(
+              decoration:  InputDecoration(
                 hintText: 'Search topics, farmers, or advice...',
                 hintStyle: TextStyle(
                   fontFamily: 'Inter',

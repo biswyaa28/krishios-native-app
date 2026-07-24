@@ -1,24 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:krishios/core/utils/formatters.dart';
+import 'package:intl/intl.dart';
+import 'package:share_plus/share_plus.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../shared/models/scan_result.dart';
 import '../../../scan/presentation/providers/scan_provider.dart';
 import '../../../scan/presentation/screens/scan_result_screen.dart';
 import '../../../scan/presentation/screens/scan_history_screen.dart';
+import '../../../scan/presentation/screens/chat_screen.dart';
+import '../../../../core/providers/theme_provider.dart';
 
 class RecentScansSection extends ConsumerWidget {
   const RecentScansSection({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.watch(themeModeProvider);
     final scans = ref.watch(scanHistoryProvider);
 
     if (scans.isEmpty) {
-      return const SizedBox.shrink(); // Hide section if no scans exist
+      return const SizedBox.shrink();
     }
 
-    final recentScans = scans.take(3).toList();
+    final recentScans = scans.take(5).toList();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,7 +30,10 @@ class RecentScansSection extends ConsumerWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Recent Scans', style: AppTextStyles.headlineMd),
+            Text(
+              'Recent Diagnostics',
+              style: AppTextStyles.headlineMd.copyWith(color: AppColors.primary),
+            ),
             TextButton(
               onPressed: () {
                 Navigator.push(
@@ -38,111 +45,197 @@ class RecentScansSection extends ConsumerWidget {
             ),
           ],
         ),
-        const SizedBox(height: 12),
-        Container(
-          decoration: BoxDecoration(
-            color: AppColors.surfaceContainerLowest,
-            borderRadius: BorderRadius.circular(12),
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.primaryContainer.withValues(alpha: 0.08),
-                blurRadius: 8,
-                offset: const Offset(0, 4),
-              ),
-            ],
-          ),
-          child: Column(
-            children: [
-              for (int i = 0; i < recentScans.length; i++) ...[
-                _buildScanItem(context, recentScans[i]),
-                if (i < recentScans.length - 1) _divider(),
-              ],
-            ],
+        const SizedBox(height: 10),
+        SizedBox(
+          height: 200,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: recentScans.length,
+            itemBuilder: (context, index) {
+              final scan = recentScans[index];
+              return _buildHorizontalScanCard(context, ref, scan);
+            },
           ),
         ),
       ],
     );
   }
 
-  Widget _buildScanItem(BuildContext context, ScanResult scan) {
-    final isHealthy = scan.diagnosis.toLowerCase().contains('healthy');
-    final icon = isHealthy ? Icons.eco : Icons.pest_control;
-    final iconBg = isHealthy ? AppColors.surfaceContainer : AppColors.errorContainer;
-    final iconColor = isHealthy ? AppColors.primary : AppColors.error;
-    final timestampText = Formatters.relativeTime(scan.scannedAt);
+  Widget _buildHorizontalScanCard(BuildContext context, WidgetRef ref, ScanResult scan) {
+    final hasDisease = !scan.diagnosis.toLowerCase().contains('healthy');
+    final severity = scan.healthScore > 80
+        ? 'Low'
+        : scan.healthScore > 50
+            ? 'Moderate'
+            : 'High';
+    final severityColor = severity == 'Low'
+        ? Colors.green
+        : severity == 'Moderate'
+            ? Colors.orange
+            : Colors.red;
 
-    return ScanItem(
-      icon: icon,
-      iconBg: iconBg,
-      iconColor: iconColor,
-      title: '${scan.cropName} (${scan.fieldName})',
-      subtitle: '${scan.diagnosis} • $timestampText',
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => ScanResultScreen(scan: scan),
+    final dateText = DateFormat('MMM dd, yyyy').format(scan.scannedAt);
+    final confidenceText = scan.confidence != null
+        ? '${(scan.confidence! * 100).toStringAsFixed(0)}%'
+        : 'N/A';
+
+    return Container(
+      width: 280,
+      margin: const EdgeInsets.only(right: 16, bottom: 8, top: 4),
+      decoration: BoxDecoration(
+        color: AppColors.surfaceContainerLowest,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.04),
+            blurRadius: 6,
+            offset: const Offset(0, 3),
           ),
-        );
-      },
+        ],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Header Row (Crop Name & Health score)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Text(
+                    scan.cropName,
+                    style: AppTextStyles.headlineMd.copyWith(color: AppColors.primary, fontWeight: FontWeight.bold),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryContainer.withValues(alpha: 0.15),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text(
+                    'Health: ${scan.healthScore.toStringAsFixed(0)}%',
+                    style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: AppColors.primary),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            // Diagnosis
+            Text(
+              scan.diagnosis,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: AppTextStyles.labelMd.copyWith(color: hasDisease ? Colors.redAccent : AppColors.onSurface),
+            ),
+            const SizedBox(height: 4),
+            // Secondary details (Confidence, Date, Severity)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Conf: $confidenceText', style: AppTextStyles.bodySm.copyWith(color: AppColors.outline)),
+                Text(dateText, style: AppTextStyles.bodySm.copyWith(color: AppColors.outline)),
+                Row(
+                  children: [
+                    Container(
+                      width: 8,
+                      height: 8,
+                      decoration: BoxDecoration(color: severityColor, shape: BoxShape.circle),
+                    ),
+                    const SizedBox(width: 4),
+                    Text(
+                      'Sev: $severity',
+                      style: TextStyle(fontSize: 11, color: severityColor, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            const Spacer(),
+            // Quick action buttons
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _ActionButton(
+                  icon: Icons.visibility_outlined,
+                  tooltip: 'View Details',
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => ScanResultScreen(scan: scan)),
+                    );
+                  },
+                ),
+                _ActionButton(
+                  icon: Icons.chat_bubble_outline,
+                  tooltip: 'Ask Kavya',
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => ChatScreen(
+                          scanId: scan.id,
+                          cropName: scan.cropName,
+                          diagnosis: scan.diagnosis,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+                _ActionButton(
+                  icon: Icons.share_outlined,
+                  tooltip: 'Share',
+                  onPressed: () {
+                    Share.share(
+                      'Crop: ${scan.cropName}\nDiagnosis: ${scan.diagnosis}\nHealth Score: ${scan.healthScore.toStringAsFixed(0)}%\nReport generated by KrishiOS Kavya.',
+                    );
+                  },
+                ),
+                _ActionButton(
+                  icon: Icons.calendar_today_outlined,
+                  tooltip: 'Schedule Follow-up',
+                  onPressed: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Follow-up scheduled for ${scan.cropName}.')),
+                    );
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
-
-  Widget _divider() =>
-      const Divider(height: 1, color: AppColors.outlineVariant);
 }
 
-class ScanItem extends StatelessWidget {
+class _ActionButton extends StatelessWidget {
   final IconData icon;
-  final Color iconBg;
-  final Color iconColor;
-  final String title;
-  final String subtitle;
-  final VoidCallback? onTap;
+  final String tooltip;
+  final VoidCallback onPressed;
 
-  const ScanItem({
-    super.key,
+  const _ActionButton({
     required this.icon,
-    required this.iconBg,
-    required this.iconColor,
-    required this.title,
-    required this.subtitle,
-    this.onTap,
+    required this.tooltip,
+    required this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: const BorderRadius.vertical(
-        top: Radius.circular(12),
-        bottom: Radius.circular(12),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Row(
-          children: [
-            Container(
-              width: 48,
-              height: 48,
-              decoration: BoxDecoration(
-                color: iconBg,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Icon(icon, color: iconColor, size: 24),
-            ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(title, style: AppTextStyles.labelMd),
-                  Text(subtitle, style: AppTextStyles.bodySm),
-                ],
-              ),
-            ),
-            const Icon(Icons.chevron_right, color: AppColors.onSurfaceVariant),
-          ],
+    return Tooltip(
+      message: tooltip,
+      child: Container(
+        decoration: BoxDecoration(
+          color: AppColors.surfaceContainer,
+          shape: BoxShape.circle,
+        ),
+        child: IconButton(
+          icon: Icon(icon, size: 16, color: AppColors.primary),
+          onPressed: onPressed,
+          constraints: const BoxConstraints(),
+          padding: const EdgeInsets.all(8),
         ),
       ),
     );

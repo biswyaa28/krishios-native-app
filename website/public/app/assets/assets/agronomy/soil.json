@@ -1,0 +1,22 @@
+{
+  "soil_profiles": {
+    "clay": {
+      "retention": "High",
+      "aeration": "Low",
+      "fertilizer_retention": "High",
+      "guideline": "Avoid compaction and overwatering. Work in coarse compost to improve structure."
+    },
+    "sandy": {
+      "retention": "Low",
+      "aeration": "High",
+      "fertilizer_retention": "Low",
+      "guideline": "Apply slow-release organic fertilizers in small doses. Mulch regularly to stop evaporation."
+    },
+    "loamy": {
+      "retention": "Medium",
+      "aeration": "Medium",
+      "fertilizer_retention": "Medium",
+      "guideline": "Ideal agricultural substrate. Perform standard seasonal top-dressing."
+    }
+  }
+}

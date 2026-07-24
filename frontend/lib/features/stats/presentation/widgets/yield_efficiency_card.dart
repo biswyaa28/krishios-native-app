@@ -69,7 +69,7 @@ class YieldEfficiencyCard extends StatelessWidget {
                   size: const Size(48, 48),
                   painter: GaugePainter(progress: healthScore),
                 ),
-                const Icon(Icons.eco, color: AppColors.primary, size: 20),
+                Icon(Icons.eco, color: AppColors.primary, size: 20),
               ],
             ),
           ),

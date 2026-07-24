@@ -195,7 +195,7 @@ class _PostDetailScreenState extends ConsumerState<PostDetailScreen> {
                           const SizedBox(width: 24),
                           Row(
                             children: [
-                              const Icon(Icons.chat_bubble_outline,
+                               Icon(Icons.chat_bubble_outline,
                                   size: 20, color: AppColors.onSurfaceVariant),
                               const SizedBox(width: 4),
                               Text('${widget.post.commentsCount}',
@@ -264,7 +264,7 @@ class _PostDetailScreenState extends ConsumerState<PostDetailScreen> {
                       },
                     );
                   },
-                  loading: () => const Center(
+                  loading: () =>  Center(
                     child: Padding(
                       padding: EdgeInsets.symmetric(vertical: 24),
                       child: CircularProgressIndicator(color: AppColors.primary),
@@ -304,12 +304,12 @@ class _PostDetailScreenState extends ConsumerState<PostDetailScreen> {
                   ),
                   IconButton(
                     icon: _sending
-                        ? const SizedBox(
+                        ?  SizedBox(
                             width: 20,
                             height: 20,
                             child: CircularProgressIndicator(strokeWidth: 2, color: AppColors.primary),
                           )
-                        : const Icon(Icons.send, color: AppColors.primary),
+                        : Icon(Icons.send, color: AppColors.primary),
                     onPressed: _sending ? null : _submitComment,
                   ),
                 ],

@@ -1,0 +1,24 @@
+{
+    "model_name": "EfficientNet-B0 Crop Disease Classifier",
+    "input_shape": [
+        1,
+        3,
+        224,
+        224
+    ],
+    "input_name": "input",
+    "output_name": "output",
+    "normalization": {
+        "mean": [
+            0.485,
+            0.456,
+            0.406
+        ],
+        "std": [
+            0.229,
+            0.224,
+            0.225
+        ]
+    },
+    "num_classes": 38
+}

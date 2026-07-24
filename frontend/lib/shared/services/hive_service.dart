@@ -1,4 +1,7 @@
+import 'dart:convert';
 import 'dart:io';
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart';
 import '../models/weather.dart';
@@ -10,33 +13,68 @@ class HiveService {
   static const String userPrefsBox = 'user_prefs';
   static const String draftsBox = 'community_drafts';
 
+  static const String _secureStorageKey = 'hive_encryption_key';
+  static const FlutterSecureStorage _secureStorage = FlutterSecureStorage(
+    aOptions: AndroidOptions(encryptedSharedPreferences: true),
+  );
+
   static Future<void> init() async {
-    final dir = await getApplicationDocumentsDirectory();
-    // Clean up locks
-    for (final name in [weatherBox, scanHistoryBox, userPrefsBox, draftsBox, 'secure_keys_box']) {
-      final lock = File('${dir.path}/$name.lock');
-      if (await lock.exists()) {
-        try { await lock.delete(); } catch (_) {}
+    try {
+      if (!kIsWeb) {
+        final dir = await getApplicationDocumentsDirectory();
+        // Clean up lock files
+        for (final name in [weatherBox, scanHistoryBox, userPrefsBox, draftsBox, 'app_notifications']) {
+          final lock = File('${dir.path}/$name.lock');
+          if (await lock.exists()) {
+            try { await lock.delete(); } catch (_) {}
+          }
+        }
       }
+      await Hive.initFlutter();
+      if (!Hive.isAdapterRegistered(0)) Hive.registerAdapter(WeatherAdapter());
+      if (!Hive.isAdapterRegistered(1)) Hive.registerAdapter(ScanResultAdapter());
+
+      // Fetch or generate cryptographically secure 32-byte AES key via FlutterSecureStorage
+      List<int>? keyBytes;
+      try {
+        final storedKeyStr = await _secureStorage.read(key: _secureStorageKey);
+        if (storedKeyStr != null) {
+          final decoded = base64Url.decode(storedKeyStr);
+          if (decoded.length == 32) {
+            keyBytes = decoded;
+          }
+        }
+      } catch (_) {
+        keyBytes = null;
+      }
+
+      // Generate a new 32-byte key if missing or invalid
+      if (keyBytes == null || keyBytes.length != 32) {
+        keyBytes = Hive.generateSecureKey();
+        try {
+          await _secureStorage.write(
+            key: _secureStorageKey,
+            value: base64Url.encode(keyBytes),
+          );
+        } catch (_) {}
+      }
+
+      final cipher = HiveAesCipher(keyBytes);
+
+      await Hive.openBox<Weather>(weatherBox, encryptionCipher: cipher);
+      await Hive.openBox<ScanResult>(scanHistoryBox, encryptionCipher: cipher);
+      await Hive.openBox(userPrefsBox, encryptionCipher: cipher);
+      await Hive.openBox(draftsBox, encryptionCipher: cipher);
+      await Hive.openBox('app_notifications');
+    } catch (e) {
+      // Graceful error recovery: Open unencrypted fallback boxes if platform keystore is unavailable
+      await Hive.initFlutter();
+      await Hive.openBox<Weather>(weatherBox);
+      await Hive.openBox<ScanResult>(scanHistoryBox);
+      await Hive.openBox(userPrefsBox);
+      await Hive.openBox(draftsBox);
+      await Hive.openBox('app_notifications');
     }
-    await Hive.initFlutter();
-    Hive.registerAdapter(WeatherAdapter());
-    Hive.registerAdapter(ScanResultAdapter());
-
-    // Open secure key container (unencrypted metadata storage)
-    final secureBox = await Hive.openBox('secure_keys_box');
-    List<int>? key = secureBox.get('encryption_key')?.cast<int>();
-    if (key == null) {
-      key = Hive.generateSecureKey();
-      await secureBox.put('encryption_key', key);
-    }
-
-    final cipher = HiveAesCipher(key);
-
-    await Hive.openBox<Weather>(weatherBox, encryptionCipher: cipher);
-    await Hive.openBox<ScanResult>(scanHistoryBox, encryptionCipher: cipher);
-    await Hive.openBox(userPrefsBox, encryptionCipher: cipher);
-    await Hive.openBox(draftsBox, encryptionCipher: cipher);
   }
 
   static Box<Weather> getWeatherBox() => Hive.box<Weather>(weatherBox);

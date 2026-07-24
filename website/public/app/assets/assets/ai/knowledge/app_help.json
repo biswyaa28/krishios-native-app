@@ -1,0 +1,35 @@
+{
+  "guides": [
+    {
+      "topic": "scanning",
+      "keywords": [
+        "how to scan",
+        "camera not working",
+        "take photo",
+        "disease diagnosis"
+      ],
+      "response": "To diagnose a crop, go to the 'Scan' tab from the bottom navigation, place the infected leaf in the frame, and capture the photo. The offline ONNX model will classify it instantly."
+    },
+    {
+      "topic": "offline_mode",
+      "keywords": [
+        "how offline works",
+        "no internet",
+        "without data",
+        "offline brain"
+      ],
+      "response": "KrishiOS uses a fully offline classification pipeline. Your scans are processed locally using ONNX, and my chat responses are matched against the local Conversational Knowledge Base."
+    },
+    {
+      "topic": "voice_chat",
+      "keywords": [
+        "voice",
+        "speak",
+        "microphone",
+        "listen",
+        "voice commands"
+      ],
+      "response": "Tap the microphone icon in the chat screen to dictate your query. Tap the speaker icon on any message bubble to read it aloud in your selected language."
+    }
+  ]
+}

@@ -8,7 +8,8 @@ class ApiConstants {
   /// - Android emulator: 10.0.2.2 (maps to host localhost)
   /// - Physical device: defaults to scanBaseUrl host;
   ///   override by setting [overrideHost] to your machine's LAN IP
-  static const String? overrideHost = null;
+  // ignore: unnecessary_nullable_for_final_variable_declarations
+  static const String? overrideHost = '10.39.149.7';
 
   static const String fallbackLocationName = 'Patna, Bihar (Fallback)';
   static const double fallbackLatitude = 25.6;

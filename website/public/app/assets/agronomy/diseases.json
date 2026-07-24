@@ -1,0 +1,1015 @@
+{
+  "diseases": {
+    "apple scab": {
+      "disease_name": "Apple Scab",
+      "scientific_name": "Venturia inaequalis",
+      "crop": "Apple",
+      "symptoms": "Olive-green to brown velvety spots on leaves, becoming corky and cracked as they age. Causes premature fruit drop.",
+      "causes": "Ascomycete fungus overwintering in fallen leaves. Discharges spores during spring rains.",
+      "spread": "Wind and splashing rain water carry spores to emerging spring foliage.",
+      "organic_treatments": [
+        "Apply liquid lime sulfur or sulfur sprays at green tip and petal fall stages.",
+        "Use certified organic copper octanoate sprays early in the season."
+      ],
+      "chemical_treatments": [
+        "Apply captan, mancozeb, or chlorothalonil fungicides starting at bud break.",
+        "Use systemic triazole fungicides (e.g., myclobutanil) for post-infection control."
+      ],
+      "preventive_measures": [
+        "Rake and destroy fallen leaves in autumn to reduce overwintering spore loads.",
+        "Prune tree canopy to maximize sunlight penetration and speed up leaf drying."
+      ],
+      "fertilizer_advice": "Limit heavy nitrogen fertilizers in spring to avoid excessive lush foliage, which is highly susceptible to fungal infection.",
+      "weather_sensitivity": "Highly active during prolonged leaf wetness at moderate temperatures.",
+      "humidity_threshold": 80,
+      "temperature_range": "15C-24C",
+      "recovery_guidance": "Affected foliage will not heal, but preventive treatments protect new flush. Prune out dead twigs. Vigor recovery expected in 2-3 weeks.",
+      "references": "ICAR Horticulture Advisory Bulletin (2024), Cornell University Extension Publication #210",
+      "last_reviewed": "2025-10-12"
+    },
+    "apple black rot": {
+      "disease_name": "Apple Black Rot",
+      "scientific_name": "Botryosphaeria obtusa",
+      "crop": "Apple",
+      "symptoms": "Purple spots on leaves expanding into 'frogeye' lesions. Fruits develop dark, sunken rots with concentric rings.",
+      "causes": "Fungal pathogen overwintering in mummified fruit, dead bark, and cankers.",
+      "spread": "Rain splashes conidia from cankers and mummies onto leaves, twigs, and flowers.",
+      "organic_treatments": [
+        "Apply organic copper sprays before bloom.",
+        "Spray sulfur fungicides at weekly intervals during warm, wet periods."
+      ],
+      "chemical_treatments": [
+        "Apply thiophanate-methyl or mancozeb at bud break.",
+        "Use strobilurin fungicides (e.g., pyraclostrobin) during vegetative growth."
+      ],
+      "preventive_measures": [
+        "Prune out dead wood, cankers, and fire blight strikes during winter dormancy.",
+        "Remove and burn all mummified fruit hanging in trees or lying on the orchard floor."
+      ],
+      "fertilizer_advice": "Ensure adequate potassium levels to promote bark healing and reduce canker susceptibility.",
+      "weather_sensitivity": "Spreads rapidly during warm rain events. Spores germinate within 4 hours at optimal temperatures.",
+      "humidity_threshold": 85,
+      "temperature_range": "20C-28C",
+      "recovery_guidance": "Prune out infected branches 6 inches below visible damage. Cankered trees may take a full season to recover.",
+      "references": "FAO Plant Production Guidelines (2023), Penn State Extension Fruit Pathology Guide",
+      "last_reviewed": "2025-08-15"
+    },
+    "apple cedar rust": {
+      "disease_name": "Apple Cedar Rust",
+      "scientific_name": "Gymnosporangium juniperi-virginianae",
+      "crop": "Apple",
+      "symptoms": "Bright orange-yellow spots on upper leaf surfaces, developing tube-like structures (aecia) on the leaf underside.",
+      "causes": "Heteroecious rust fungus requiring two hosts (apples and eastern red cedars) to complete its life cycle.",
+      "spread": "Windborne basidiospores travel up to a mile from cedar galls to apple leaves during wet spring weather.",
+      "organic_treatments": [
+        "Apply copper soap sprays starting at pink bud stage.",
+        "Apply sulfur dusts at weekly intervals during spring rain periods."
+      ],
+      "chemical_treatments": [
+        "Apply myclobutanil or mancozeb starting at tight cluster stage.",
+        "Apply fenbuconazole at petal fall to block spore germination."
+      ],
+      "preventive_measures": [
+        "Remove all eastern red cedar and juniper hosts within a 500-foot radius of the orchard.",
+        "Plant rust-resistant apple cultivars like Liberty, Freedom, or Enterprise."
+      ],
+      "fertilizer_advice": "Apply organic compost to support root vigor. Avoid high-nitrogen spikes that induce susceptible soft shoots.",
+      "weather_sensitivity": "Requires liquid moisture on apple leaves for at least 4-6 hours to initiate infection.",
+      "humidity_threshold": 75,
+      "temperature_range": "12C-22C",
+      "recovery_guidance": "Defoliated trees recover slowly. Provide deep watering and humic acid to stimulate new root flushes. Vigor returns next spring.",
+      "references": "University of Illinois Extension Fruit Report (2024), CABI Invasive Species Compendium",
+      "last_reviewed": "2025-11-20"
+    },
+    "apple healthy": {
+      "disease_name": "Apple Healthy",
+      "scientific_name": "N/A",
+      "crop": "Apple",
+      "symptoms": "Foliage is dark green, turgid, and free of lesions or velvety coatings. Vigor and shoot elongation are optimal.",
+      "causes": "N/A",
+      "spread": "N/A",
+      "organic_treatments": [
+        "Maintain baseline organic mulch compost around base.",
+        "Spray seaweed extract foliar nutrients monthly to boost immunity."
+      ],
+      "chemical_treatments": [
+        "None required. Maintain standard pre-scheduled protection plan."
+      ],
+      "preventive_measures": [
+        "Perform routine visual inspections of lower canopy leaves.",
+        "Ensure drip irrigation lines are clear and watering is consistent."
+      ],
+      "fertilizer_advice": "Apply balanced organic NPK (5-5-5) at start of spring flush and post-harvest.",
+      "weather_sensitivity": "Monitor for high-humidity pockets which may initiate disease cycles.",
+      "humidity_threshold": 60,
+      "temperature_range": "10C-32C",
+      "recovery_guidance": "Continue current cultivation practices. Keep records of leaf flushes.",
+      "references": "ICAR Fruit Advisory Bulletins (2024)",
+      "last_reviewed": "2026-01-10"
+    },
+    "blueberry healthy": {
+      "disease_name": "Blueberry Healthy",
+      "scientific_name": "N/A",
+      "crop": "Blueberry",
+      "symptoms": "Leaves are smooth, deep green, with no red spots, powdery margins, or leaf drop.",
+      "causes": "N/A",
+      "spread": "N/A",
+      "organic_treatments": [
+        "Apply pine needle or pine bark mulch to preserve soil acidity.",
+        "Use kelp meal soil amendments for trace mineral supply."
+      ],
+      "chemical_treatments": [
+        "None required."
+      ],
+      "preventive_measures": [
+        "Maintain soil pH between 4.5 and 5.2.",
+        "Perform annual winter pruning to remove old unproductive wood."
+      ],
+      "fertilizer_advice": "Use ammonium sulfate or organic cotton seed meal to maintain acidic soil nitrogen levels.",
+      "weather_sensitivity": "Ensure soil remains moist; blueberries have shallow roots sensitive to heat drought.",
+      "humidity_threshold": 50,
+      "temperature_range": "15C-30C",
+      "recovery_guidance": "Optimal state. Continue regular soil pH checks.",
+      "references": "USDA Blueberry Extension Factsheet (2024)",
+      "last_reviewed": "2025-09-18"
+    },
+    "cherry powdery mildew": {
+      "disease_name": "Cherry Powdery Mildew",
+      "scientific_name": "Podosphaera clandestina",
+      "crop": "Cherry",
+      "symptoms": "White, powdery patches of fungal growth on leaves and shoots. Infected leaves curl upward and drop prematurely.",
+      "causes": "Obligate biotrophic fungus overwintering as chasmothecia in bark crevices and fallen leaves.",
+      "spread": "Wind carries conidia from primary shoots onto expanding leaves during warm, dry days with high relative humidity at night.",
+      "organic_treatments": [
+        "Spray potassium bicarbonate or horticultural oils.",
+        "Apply sulfur-based bio-fungicides at weekly intervals."
+      ],
+      "chemical_treatments": [
+        "Apply quinoxyfen or myclobutanil at shuck split.",
+        "Use strobilurin class fungicides during active shoot growth."
+      ],
+      "preventive_measures": [
+        "Prune internal branches to allow light penetration and air movement.",
+        "Avoid overhead irrigation to prevent high-humidity microclimates in the canopy."
+      ],
+      "fertilizer_advice": "Reduce late-summer nitrogen applications to discourage soft, susceptible terminal growth.",
+      "weather_sensitivity": "Active during warm days (20-25C) with dry leaf surfaces, coupled with high relative humidity at night.",
+      "humidity_threshold": 70,
+      "temperature_range": "15C-28C",
+      "recovery_guidance": "Prune back severely distorted shoots. New leaves will grow healthy once humidity drops. Recovery in 2 weeks.",
+      "references": "Oregon State University Extension Plant Disease Handbook (2024)",
+      "last_reviewed": "2025-10-05"
+    },
+    "cherry healthy": {
+      "disease_name": "Cherry Healthy",
+      "scientific_name": "N/A",
+      "crop": "Cherry",
+      "symptoms": "Leaves are vibrant green, flat, without powdery coatings, spots, or chewing damage.",
+      "causes": "N/A",
+      "spread": "N/A",
+      "organic_treatments": [
+        "Apply well-rotted organic compost around the drip line.",
+        "Spray biological companion sprays to maintain leaf microbiomes."
+      ],
+      "chemical_treatments": [
+        "None required."
+      ],
+      "preventive_measures": [
+        "Apply trunk wraps in winter to prevent southwest injury (sunscald).",
+        "Maintain uniform soil moisture during fruit enlargement."
+      ],
+      "fertilizer_advice": "Apply balanced organic fruit tree fertilizer in early spring.",
+      "weather_sensitivity": "Watch for sudden spring frost which can destroy blooms.",
+      "humidity_threshold": 55,
+      "temperature_range": "10C-30C",
+      "recovery_guidance": "Excellent growth. Keep canopy pruned open.",
+      "references": "ICAR Pomology Advisory Guides (2023)",
+      "last_reviewed": "2025-12-01"
+    },
+    "corn gray leaf spot": {
+      "disease_name": "Corn Gray Leaf Spot",
+      "scientific_name": "Cercospora zeae-maydis",
+      "crop": "Corn",
+      "symptoms": "Rectangular, tan-to-gray lesions running parallel to leaf veins. Lesions block photosynthesis, leading to stalk lodging.",
+      "causes": "Fungal pathogen overwintering in corn crop residue on the soil surface.",
+      "spread": "Wind and splashing water carry spores from residue onto lower leaves in early summer.",
+      "organic_treatments": [
+        "Apply organic copper fungicides at early stages of leaf spotting.",
+        "Use biological bacillus subtilis sprays to inhibit spore growth."
+      ],
+      "chemical_treatments": [
+        "Apply strobilurin or triazole fungicides at VT (tasseling) stage.",
+        "Apply azoxystrobin-propiconazole blends if disease threshold exceeds 5% of leaf area."
+      ],
+      "preventive_measures": [
+        "Rotate crops with non-hosts like soybean, alfalfa, or clover for 1-2 years.",
+        "Perform deep conventional tillage to bury infested corn residue."
+      ],
+      "fertilizer_advice": "Maintain optimal potassium levels to increase stalk strength and reduce lodging risks.",
+      "weather_sensitivity": "Thrives in warm, humid weather. Spores require 12 hours of leaf wetness to infect.",
+      "humidity_threshold": 90,
+      "temperature_range": "22C-32C",
+      "recovery_guidance": "Fungicides arrest disease spread but do not heal existing lesions. Yield recovery depends on protecting leaves above the ear.",
+      "references": "FAO Maize Disease Guide (2023), Iowa State University Crop Advisory",
+      "last_reviewed": "2025-07-28"
+    },
+    "corn common rust": {
+      "disease_name": "Corn Common Rust",
+      "scientific_name": "Puccinia sorghi",
+      "crop": "Corn",
+      "symptoms": "Golden-brown to cinnamon-brown pustules on both upper and lower leaf surfaces. Pustules rupture to release powdery spores.",
+      "causes": "Fungus migrating northward via wind currents from southern overwintering regions; does not overwinter in cold northern residues.",
+      "spread": "Windborne urediniospores travel long distances and settle on wet corn leaves.",
+      "organic_treatments": [
+        "Spray sulfur dusts or organic copper soaps during early infection.",
+        "Use potassium bicarbonate foliar sprays."
+      ],
+      "chemical_treatments": [
+        "Apply pyraclostrobin or tebuconazole if pustules appear before tasseling.",
+        "Apply propiconazole at first sign of infection on seed corn."
+      ],
+      "preventive_measures": [
+        "Plant commercial hybrids bred with specific resistance (Rp genes).",
+        "Plant early in the season to avoid peak spore migration windows."
+      ],
+      "fertilizer_advice": "Maintain balanced nitrogen levels; excessive nitrogen promotes soft leaf tissue that rust spores easily penetrate.",
+      "weather_sensitivity": "Active in cool, moist, and cloudy weather conditions. Free water on leaf is required.",
+      "humidity_threshold": 85,
+      "temperature_range": "16C-23C",
+      "recovery_guidance": "High recovery rate if treated before widespread pustule rupture. Leaf integrity recovers in 10-14 days.",
+      "references": "ICAR Field Crop Pathology Manual (2024), Purdue Extension Corn Guide",
+      "last_reviewed": "2025-08-30"
+    },
+    "corn northern leaf blight": {
+      "disease_name": "Corn Northern Leaf Blight",
+      "scientific_name": "Exserohilum turcicum",
+      "crop": "Corn",
+      "symptoms": "Long, cigar-shaped, grayish-green lesions (1 to 6 inches long). Leaves look burned or frosted.",
+      "causes": "Ascomycete fungus overwintering as chlamydospores in crop residue.",
+      "spread": "Spores are carried by wind or rain splashes onto new corn leaves during warm, wet periods.",
+      "organic_treatments": [
+        "Apply copper octanoate foliar treatments at V6-V8 stages.",
+        "Spray compost tea or bio-fungicides to suppress spore activity."
+      ],
+      "chemical_treatments": [
+        "Apply strobilurin fungicides at VT (tasseling) stage.",
+        "Apply benzovindiflupyr or prothioconazole blends for high-risk fields."
+      ],
+      "preventive_measures": [
+        "Select hybrids with Ht genes for resistance.",
+        "Rotate corn with soybeans or small grains to allow residue decomposition."
+      ],
+      "fertilizer_advice": "Ensure adequate phosphorus levels to encourage early root establishment and overall crop vigor.",
+      "weather_sensitivity": "Favored by moderate temperatures and prolonged humid wetness (dew or light rain).",
+      "humidity_threshold": 80,
+      "temperature_range": "18C-27C",
+      "recovery_guidance": "Fungicide spray must occur before 50% canopy coverage is affected. Ear fill recovers if sprayed early.",
+      "references": "FAO Grain Advisory Bulletin (2024), University of Minnesota Extension",
+      "last_reviewed": "2025-09-12"
+    },
+    "corn healthy": {
+      "disease_name": "Corn Healthy",
+      "scientific_name": "N/A",
+      "crop": "Corn",
+      "symptoms": "Leaves are erect, deep green, with no cigar-shaped lesions, pustules, or leaf margins showing yellowing.",
+      "causes": "N/A",
+      "spread": "N/A",
+      "organic_treatments": [
+        "Apply blood meal or fish emulsion nitrogen during knee-high stage."
+      ],
+      "chemical_treatments": [
+        "None required."
+      ],
+      "preventive_measures": [
+        "Ensure uniform seed planting depth for even emergence.",
+        "Monitor drainage systems to prevent waterlogging around roots."
+      ],
+      "fertilizer_advice": "Apply side-dress nitrogen (urea or anhydrous ammonia) at V4-V6 growth stages.",
+      "weather_sensitivity": "Monitor heat index; corn requires deep moisture during pollination.",
+      "humidity_threshold": 65,
+      "temperature_range": "18C-35C",
+      "recovery_guidance": "Healthy growth. Vigor is high.",
+      "references": "ICAR Agronomy Reports (2024)",
+      "last_reviewed": "2026-02-14"
+    },
+    "grape black rot": {
+      "disease_name": "Grape Black Rot",
+      "scientific_name": "Guignardia bidwellii",
+      "crop": "Grape",
+      "symptoms": "Small, round, tan spots on leaves with dark borders. Berries turn red-brown, shrivel, and dry into hard black mummies.",
+      "causes": "Fungus overwintering in mummified berries on the vine or on the ground.",
+      "spread": "Rain drops splash spores from overwintering berries onto new shoots and fruit clusters.",
+      "organic_treatments": [
+        "Apply copper fungicides during early spring pre-bloom.",
+        "Spray sulfur fungicides at weekly intervals until berry touch."
+      ],
+      "chemical_treatments": [
+        "Apply mancozeb or captan starting at 1-inch shoot growth.",
+        "Use DMI class fungicides (e.g., tebuconazole) post-bloom for fruit protection."
+      ],
+      "preventive_measures": [
+        "Prune out and destroy all mummified grape clusters and dead wood during winter.",
+        "Keep canopy well-trained to vertical trellises to maximize wind drying."
+      ],
+      "fertilizer_advice": "Apply organic compost around vine roots. Avoid nitrogen over-fertilization which produces dense, damp canopies.",
+      "weather_sensitivity": "Requires constant leaf wetness for 6-24 hours depending on temperature.",
+      "humidity_threshold": 80,
+      "temperature_range": "20C-27C",
+      "recovery_guidance": "Shriveled berries cannot recover. Prune out damaged clusters immediately. Focus on protecting remaining green berries.",
+      "references": "FAO Viticulture Technical Guidelines (2024), Ohio State Extension Grape Guide",
+      "last_reviewed": "2025-06-18"
+    },
+    "grape black measles": {
+      "disease_name": "Grape Black Measles (Esca)",
+      "scientific_name": "Phaeomoniella chlamydospora / Phaeoacremonium aleophilum",
+      "crop": "Grape",
+      "symptoms": "Interveinal leaf yellowing and drying (tiger-stripe pattern). Berries show small, round, dark spots.",
+      "causes": "Complex of wood-rotting fungi invading pruning wounds on older vines.",
+      "spread": "Wind and rain disperse fungal spores onto fresh pruning cuts during winter and early spring.",
+      "organic_treatments": [
+        "Apply organic pruning wound protectants (e.g., copper paste) immediately after cutting.",
+        "Use biological Trichoderma-based wound seals."
+      ],
+      "chemical_treatments": [
+        "None available for cured vines. Treat pruning wounds with thiophanate-methyl sprays.",
+        "Drench trunk wounds with standard fungicides in late winter."
+      ],
+      "preventive_measures": [
+        "Prune vines during dry weather in late winter; avoid pruning during or immediately after rain.",
+        "Paint pruning cuts larger than 0.5 inches with specialized sealants."
+      ],
+      "fertilizer_advice": "Ensure balanced nutrition and avoid water stress to reduce vascular strain on infected vines.",
+      "weather_sensitivity": "Symptoms are expressed severely during hot, dry summer spells when water demand is high.",
+      "humidity_threshold": 50,
+      "temperature_range": "25C-38C",
+      "recovery_guidance": "Chronic wood disease. Prune back trunks to healthy wood. Vines may take years to re-establish canopy.",
+      "references": "University of California Davis IPM Grape Reports (2023)",
+      "last_reviewed": "2025-08-10"
+    },
+    "grape leaf blight": {
+      "disease_name": "Grape Leaf Blight",
+      "scientific_name": "Pseudocercospora vitis",
+      "crop": "Grape",
+      "symptoms": "Dull red to brown spots on leaves, expanding to cover large portions of the blade. Leaves dry and drop.",
+      "causes": "Fungal pathogen overwintering on fallen leaves and dead canopy wood.",
+      "spread": "Spores are splashed by rain onto lower canopy leaves, moving upward as the season progresses.",
+      "organic_treatments": [
+        "Apply organic copper octanoate sprays at first sign of leaf spots.",
+        "Use sulfur or bacillus amyloliquefaciens foliar treatments."
+      ],
+      "chemical_treatments": [
+        "Apply chlorothalonil or mancozeb at pre-bloom stages.",
+        "Use strobilurin class fungicides if wet weather persists after bloom."
+      ],
+      "preventive_measures": [
+        "Ensure lower leaves are pruned to prevent contact with wet soil.",
+        "Mow orchard floor grasses short to increase air flow beneath the vines."
+      ],
+      "fertilizer_advice": "Apply organic compost and humic acid to build root capacity and leaf vigor.",
+      "weather_sensitivity": "Active during warm, humid weather with frequent rains.",
+      "humidity_threshold": 75,
+      "temperature_range": "22C-30C",
+      "recovery_guidance": "Defoliated vines produce weak buds next year. Protect remaining foliage with copper. Recovery takes 3-4 weeks.",
+      "references": "ICAR Viticulture Advisory Manual (2024)",
+      "last_reviewed": "2025-10-18"
+    },
+    "grape healthy": {
+      "disease_name": "Grape Healthy",
+      "scientific_name": "N/A",
+      "crop": "Grape",
+      "symptoms": "Leaves are wide, deep green, free of spots, necrosis, or curling. Vine tendrils are climbing actively.",
+      "causes": "N/A",
+      "spread": "N/A",
+      "organic_treatments": [
+        "Maintain cover crop (clover or vetch) between rows to balance soil biology.",
+        "Apply organic mulch around vine bases."
+      ],
+      "chemical_treatments": [
+        "None required."
+      ],
+      "preventive_measures": [
+        "Prune vines to a dual-arm Kniffin or cordon system to maximize air penetration.",
+        "Maintain drip irrigation schedules during berry swelling."
+      ],
+      "fertilizer_advice": "Apply potassium sulfate during fruit-set to support sugar translocation.",
+      "weather_sensitivity": "Watch for sudden heavy rain during harvest, which can split ripe berries.",
+      "humidity_threshold": 60,
+      "temperature_range": "15C-35C",
+      "recovery_guidance": "Excellent growth. Keep canopy shoot-thinned.",
+      "references": "ICAR Viticulture Technical Circular (2024)",
+      "last_reviewed": "2026-01-20"
+    },
+    "orange huanglongbing": {
+      "disease_name": "Citrus Greening (HLB)",
+      "scientific_name": "Candidatus Liberibacter asiaticus",
+      "crop": "Orange",
+      "symptoms": "Asymmetrical leaf mottling (blotchy mottle). Fruits are small, lopsided, remain green at the bottom, and taste bitter.",
+      "causes": "Gram-negative phloem-limited bacterium.",
+      "spread": "Transmitted by the Asian Citrus Psyllid (Diaphorina citri) during feeding on young flush.",
+      "organic_treatments": [
+        "Apply organic horticultural oils to suppress Asian Citrus Psyllid vector populations.",
+        "Release predatory wasps (Tamarixia radiata) as a biological control agent."
+      ],
+      "chemical_treatments": [
+        "Apply systemic neonicotinoid insecticides (e.g., imidacloprid) to young trees.",
+        "Spray pyrethroid or organophosphate insecticides during flush periods to kill adult vectors."
+      ],
+      "preventive_measures": [
+        "Immediately remove and burn infected trees to eliminate inoculum source.",
+        "Plant only certified disease-free citrus trees grown in insect-proof screenhouses."
+      ],
+      "fertilizer_advice": "Provide enhanced nutritional foliar programs (micronutrients zinc, manganese, boron) to support productivity of infected trees.",
+      "weather_sensitivity": "Psyllid vectors are highly active in warm, dry weather during new leaf flush.",
+      "humidity_threshold": 50,
+      "temperature_range": "20C-33C",
+      "recovery_guidance": "Fatal bacterial disease. There is no cure. Trees slowly decline and die within 3-5 years. Removal is mandatory to save orchard.",
+      "references": "FAO Citrus Greening Manual (2024), University of Florida Citrus Research Center",
+      "last_reviewed": "2025-08-25"
+    },
+    "peach bacterial spot": {
+      "disease_name": "Peach Bacterial Spot",
+      "scientific_name": "Xanthomonas arboricola pv. pruni",
+      "crop": "Peach",
+      "symptoms": "Small, water-soaked, purple-to-black spots on leaves, often dry and drop out leaving a 'shot-hole' appearance.",
+      "causes": "Bacterium overwintering in twig cankers and buds.",
+      "spread": "Wind-blown rain splashes bacteria from cankers onto emerging leaves and developing fruit in spring.",
+      "organic_treatments": [
+        "Apply copper sprays at dormant and bud swell stages.",
+        "Apply biological Bacillus subtilis sprays during the growing season."
+      ],
+      "chemical_treatments": [
+        "Apply oxytetracycline (antibiotic) starting at petal fall at weekly intervals.",
+        "Use zinc-based bactericides during late spring cover sprays."
+      ],
+      "preventive_measures": [
+        "Plant resistant cultivars (e.g., Redhaven, Loring, Cresthaven).",
+        "Avoid planting orchards in highly sandy soils which exacerbate plant stress and disease susceptibility."
+      ],
+      "fertilizer_advice": "Apply moderate nitrogen levels to maintain vigor, but avoid over-application which creates dense, humid canopy cover.",
+      "weather_sensitivity": "Active during warm, wet spring weather with high winds.",
+      "humidity_threshold": 80,
+      "temperature_range": "20C-28C",
+      "recovery_guidance": "Prune out twig cankers. Shot-holed leaves will function partially but expect minor leaf drop. Vigor returns in 3-4 weeks.",
+      "references": "FAO Peach Disease Technical Guide (2023), Clemson University Extension Fruit Reports",
+      "last_reviewed": "2025-09-08"
+    },
+    "peach healthy": {
+      "disease_name": "Peach Healthy",
+      "scientific_name": "N/A",
+      "crop": "Peach",
+      "symptoms": "Leaves are lanceolate, light-to-mid green, free of shot-hole spots, curling, or leaf curl puckering.",
+      "causes": "N/A",
+      "spread": "N/A",
+      "organic_treatments": [
+        "Apply organic bark mulch to retain root moisture.",
+        "Spray fish emulsion fertilizer to support shoot growth."
+      ],
+      "chemical_treatments": [
+        "None required."
+      ],
+      "preventive_measures": [
+        "Perform regular pruning to maintain open-center shape (V-shape canopy).",
+        "Thin young fruits in spring to prevent branch breakage and tree stress."
+      ],
+      "fertilizer_advice": "Apply balanced fruit tree fertilizer after harvest in late summer.",
+      "weather_sensitivity": "Peach trees are sensitive to late spring freeze events.",
+      "humidity_threshold": 60,
+      "temperature_range": "15C-32C",
+      "recovery_guidance": "Optimal state. Vigor is high.",
+      "references": "ICAR Fruit Crop Advisory (2024)",
+      "last_reviewed": "2025-11-15"
+    },
+    "pepper bell bacterial spot": {
+      "disease_name": "Pepper Bell Bacterial Spot",
+      "scientific_name": "Xanthomonas campestris pv. vesicatoria",
+      "crop": "Pepper Bell",
+      "symptoms": "Small, dark, circular spots on leaves, becoming raised and scabby on the underside. Leaves turn yellow and drop.",
+      "causes": "Bacterium overwintering on crop residue, weed hosts, and seeds.",
+      "spread": "Rain splash, overhead irrigation, and working with wet plants spread bacteria.",
+      "organic_treatments": [
+        "Spray organic copper octanoate at 7-10 day intervals.",
+        "Use biological competitor sprays (e.g. Bacillus subtilis)."
+      ],
+      "chemical_treatments": [
+        "Apply streptomycin sulfate sprays at early seedling stage.",
+        "Apply copper-mancozeb tank mixes during humid periods."
+      ],
+      "preventive_measures": [
+        "Use certified disease-free seeds and transplants.",
+        "Rotate peppers with non-solanaceous crops for at least 2-3 years."
+      ],
+      "fertilizer_advice": "Ensure adequate calcium and potassium to enhance leaf cell wall integrity.",
+      "weather_sensitivity": "Active in warm, wet weather. Drops leaves rapidly if humidity remains high.",
+      "humidity_threshold": 85,
+      "temperature_range": "24C-32C",
+      "recovery_guidance": "Defoliated plants will have lower yields. Protect new growth with copper. Recovery seen in 2-3 weeks.",
+      "references": "FAO Vegetable Pathology Circular (2024), University of Florida IFAS Extension",
+      "last_reviewed": "2025-07-15"
+    },
+    "pepper bell healthy": {
+      "disease_name": "Pepper Bell Healthy",
+      "scientific_name": "N/A",
+      "crop": "Pepper Bell",
+      "symptoms": "Leaves are broad, shiny, dark green, free of puckering, spots, or yellowing edges.",
+      "causes": "N/A",
+      "spread": "N/A",
+      "organic_treatments": [
+        "Mulch bed with clean straw to suppress weeds and retain water.",
+        "Drench roots with compost tea weekly."
+      ],
+      "chemical_treatments": [
+        "None required."
+      ],
+      "preventive_measures": [
+        "Use drip irrigation to keep leaf surfaces dry.",
+        "Maintain spacing of 18 inches between plants to allow wind movement."
+      ],
+      "fertilizer_advice": "Apply organic high-nitrogen fertilizer before flowering, switching to high-potassium during fruit set.",
+      "weather_sensitivity": "Pepper plants shed flowers if temperature exceeds 35C.",
+      "humidity_threshold": 65,
+      "temperature_range": "20C-32C",
+      "recovery_guidance": "Vigorous growth. Fruit development is healthy.",
+      "references": "ICAR Olericulture Guidelines (2024)",
+      "last_reviewed": "2025-12-10"
+    },
+    "potato early blight": {
+      "disease_name": "Potato Early Blight",
+      "scientific_name": "Alternaria solani",
+      "crop": "Potato",
+      "symptoms": "Dark brown, circular spots with concentric target-board rings on older leaves. Lower leaves yellow and die.",
+      "causes": "Fungus overwintering in soil, crop debris, and volunteer potato plants.",
+      "spread": "Wind and splashing rain disperse conidia onto lower canopy leaves.",
+      "organic_treatments": [
+        "Apply organic copper fungicides at first sign of target spots.",
+        "Spray sulfur dusts or bio-fungicides to inhibit spore spread."
+      ],
+      "chemical_treatments": [
+        "Apply chlorothalonil, mancozeb, or azoxystrobin.",
+        "Spray boscalid or difenoconazole in rotation to prevent chemical resistance."
+      ],
+      "preventive_measures": [
+        "Practice a 3-year crop rotation; avoid planting tomatoes or eggplants in rotation.",
+        "Destroy volunteer potato plants and nightshade weeds around field borders."
+      ],
+      "fertilizer_advice": "Maintain balanced nitrogen nutrition; nitrogen-deficient plants are highly susceptible to early blight.",
+      "weather_sensitivity": "Favored by alternating wet and dry canopy conditions (heavy dew followed by hot dry days).",
+      "humidity_threshold": 80,
+      "temperature_range": "24C-29C",
+      "recovery_guidance": "Fungicide arrests progress. Keep lower leaves trimmed to stop upward spore movement. Recovery expected in 2 weeks.",
+      "references": "ICAR Tuber Pathology Manual (2024), University of Idaho Extension Potato Guide",
+      "last_reviewed": "2025-08-11"
+    },
+    "potato late blight": {
+      "disease_name": "Potato Late Blight",
+      "scientific_name": "Phytophthora infestans",
+      "crop": "Potato",
+      "symptoms": "Water-soaked, dark green to black lesions starting at leaf tips. White mildew growth appears on leaf under-surface during wet weather.",
+      "causes": "Oomycete pathogen overwintering in seed tubers and cull piles.",
+      "spread": "Cool wind currents carry sporangia for miles; splashing rain spreads zoospores locally.",
+      "organic_treatments": [
+        "Apply copper sulfate or copper hydroxide immediately at low-humidity periods.",
+        "Spray biologicals like Bacillus subtilis to suppress oomycete germination."
+      ],
+      "chemical_treatments": [
+        "Apply metalaxyl, chlorothalonil, or fluazinam.",
+        "Spray systemic propamocarb or cyazofamid under high infection risk."
+      ],
+      "preventive_measures": [
+        "Plant only certified, disease-free seed tubers.",
+        "Destroy all cull piles (dumped waste potatoes) by burying or freezing."
+      ],
+      "fertilizer_advice": "Avoid excess nitrogen fertilization which delays tuber maturity and creates dense, damp crop canopies.",
+      "weather_sensitivity": "Requires cool temperatures (15-20C) and high humidity (fog, rain, heavy dew) for spore production.",
+      "humidity_threshold": 90,
+      "temperature_range": "12C-22C",
+      "recovery_guidance": "Highly destructive. If infection exceeds 50%, destroy crop to prevent tuber rot. Vigor recovery only possible if sprayed at trace levels.",
+      "references": "FAO Global Late Blight Advisory (2024), Irish Agriculture Advisory Board Bulletins",
+      "last_reviewed": "2025-09-30"
+    },
+    "potato healthy": {
+      "disease_name": "Potato Healthy",
+      "scientific_name": "N/A",
+      "crop": "Potato",
+      "symptoms": "Leaves are broad, flat, green, free of concentric target spots or dark water-soaked margins.",
+      "causes": "N/A",
+      "spread": "N/A",
+      "organic_treatments": [
+        "Hill soil around plant base to protect developing tubers from sun exposure.",
+        "Spray compost tea to maintain leaf cuticle defenses."
+      ],
+      "chemical_treatments": [
+        "None required."
+      ],
+      "preventive_measures": [
+        "Maintain uniform soil moisture; avoid dry-to-wet soil swings which split tubers.",
+        "Inspect lower canopy leaves weekly."
+      ],
+      "fertilizer_advice": "Apply high-phosphorus organic fertilizer during planting, adding potassium during hilling.",
+      "weather_sensitivity": "Monitor for heavy rain which can wash away hilled soil.",
+      "humidity_threshold": 65,
+      "temperature_range": "15C-25C",
+      "recovery_guidance": "Excellent growth. Ensure plants are hilled.",
+      "references": "ICAR Tuber Advisory (2024)",
+      "last_reviewed": "2026-01-05"
+    },
+    "raspberry healthy": {
+      "disease_name": "Raspberry Healthy",
+      "scientific_name": "N/A",
+      "crop": "Raspberry",
+      "symptoms": "Leaves are lobed, bright green, free of gray mold, rust pustules, or leaf margins showing yellowing.",
+      "causes": "N/A",
+      "spread": "N/A",
+      "organic_treatments": [
+        "Apply organic bark mulch to protect shallow root systems.",
+        "Spray liquid seaweed extract monthly."
+      ],
+      "chemical_treatments": [
+        "None required."
+      ],
+      "preventive_measures": [
+        "Prune canes annually; remove spent floricanes after summer harvest.",
+        "Ensure trellis support keeps canes off the ground."
+      ],
+      "fertilizer_advice": "Apply organic compost or well-rotted manure around base in late winter.",
+      "weather_sensitivity": "Monitor relative humidity; raspberry fruit mold thrives in stagnant air.",
+      "humidity_threshold": 60,
+      "temperature_range": "15C-28C",
+      "recovery_guidance": "Vigorous canopy. Trellis supports are clear.",
+      "references": "USDA Small Fruit Guide (2024)",
+      "last_reviewed": "2025-10-15"
+    },
+    "soybean healthy": {
+      "disease_name": "Soybean Healthy",
+      "scientific_name": "N/A",
+      "crop": "Soybean",
+      "symptoms": "Leaves are trifoliate, uniform green, free of rust pustules, downy mildew coatings, or leaf spot lesions.",
+      "causes": "N/A",
+      "spread": "N/A",
+      "organic_treatments": [
+        "None required."
+      ],
+      "chemical_treatments": [
+        "None required."
+      ],
+      "preventive_measures": [
+        "Ensure spacing allows air movement between rows.",
+        "Monitor fields for bean leaf beetle vector populations."
+      ],
+      "fertilizer_advice": "None needed if soil is inoculated with Rhizobium bacteria; soybeans fix their own nitrogen.",
+      "weather_sensitivity": "Requires consistent soil moisture during pod filling stage.",
+      "humidity_threshold": 60,
+      "temperature_range": "18C-32C",
+      "recovery_guidance": "Healthy growth. Nodes are forming normally.",
+      "references": "ICAR Oilseeds Advisory Bulletin (2024)",
+      "last_reviewed": "2026-02-01"
+    },
+    "squash powdery mildew": {
+      "disease_name": "Squash Powdery Mildew",
+      "scientific_name": "Podosphaera xanthii",
+      "crop": "Squash",
+      "symptoms": "Talcum-powder-like white spots on leaves and stems. Leaves turn brown, shrivel, and dry up.",
+      "causes": "Fungus overwintering on weed hosts and crop debris.",
+      "spread": "Windborne conidia travel long distances; humidity favors spore development.",
+      "organic_treatments": [
+        "Spray potassium bicarbonate or neem oil.",
+        "Apply milk-water spray mixtures (1:9 ratio) under bright sunlight."
+      ],
+      "chemical_treatments": [
+        "Apply myclobutanil or triadimefon.",
+        "Use strobilurin class fungicides (e.g. trifloxystrobin) in rotation."
+      ],
+      "preventive_measures": [
+        "Plant resistant squash varieties.",
+        "Provide wide spacing (3 feet) between plants to increase air movement."
+      ],
+      "fertilizer_advice": "Avoid nitrogen over-application; excess nitrogen induces soft, susceptible leaves.",
+      "weather_sensitivity": "Thrives in warm, dry day conditions with high relative humidity at night.",
+      "humidity_threshold": 70,
+      "temperature_range": "20C-30C",
+      "recovery_guidance": "Infected leaves will remain scarred. Cut out dead vines to allow new, healthy leaves to grow. Vigor returns in 10 days.",
+      "references": "FAO Cucurbit Manual (2024), Clemson Extension vegetable guides",
+      "last_reviewed": "2025-06-25"
+    },
+    "strawberry leaf scorch": {
+      "disease_name": "Strawberry Leaf Scorch",
+      "scientific_name": "Diplocarpon earlianum",
+      "crop": "Strawberry",
+      "symptoms": "Numerous small, purplish spots on leaves. Leaf margins curl upward, brown, and dry up, looking 'scorched'.",
+      "causes": "Fungal pathogen overwintering on dead leaves.",
+      "spread": "Rain drops splash conidia from old debris onto newly emerged leaves in spring.",
+      "organic_treatments": [
+        "Apply organic copper fungicides at early leaf emergence.",
+        "Spray biologicals to populate leaf surfaces and outcompete spores."
+      ],
+      "chemical_treatments": [
+        "Apply captan or thiophanate-methyl pre-bloom.",
+        "Apply dodine or iprodione if spotting is observed in runner plants."
+      ],
+      "preventive_measures": [
+        "Rake and remove all crop debris at renovation after harvest.",
+        "Maintain weed control around beds to improve low-canopy wind flow."
+      ],
+      "fertilizer_advice": "Apply nitrogen fertilizers only in late summer after harvest; spring applications increase scorch susceptibility.",
+      "weather_sensitivity": "Active during prolonged leaf wetness at moderate to warm temperatures.",
+      "humidity_threshold": 80,
+      "temperature_range": "18C-26C",
+      "recovery_guidance": "Remove scorched leaves manually to clean the canopy. Vigor recovery expected in 2 weeks.",
+      "references": "USDA Small Fruits Technical Circular (2024), Ohio State Extension",
+      "last_reviewed": "2025-09-02"
+    },
+    "strawberry healthy": {
+      "disease_name": "Strawberry Healthy",
+      "scientific_name": "N/A",
+      "crop": "Strawberry",
+      "symptoms": "Leaves are dark green, trifoliate, without purplish lesions, margins are flat and turgid.",
+      "causes": "N/A",
+      "spread": "N/A",
+      "organic_treatments": [
+        "Mulch beds with pine needles or clean straw to keep berries off damp soil."
+      ],
+      "chemical_treatments": [
+        "None required."
+      ],
+      "preventive_measures": [
+        "Use drip irrigation to prevent crown rot.",
+        "Plant in raised beds to ensure rapid root drainage."
+      ],
+      "fertilizer_advice": "Apply organic bone meal during early spring bud break.",
+      "weather_sensitivity": "Sensitive to waterlogging; roots rot in soggy soils.",
+      "humidity_threshold": 60,
+      "temperature_range": "15C-28C",
+      "recovery_guidance": "Optimal state. Straw mulches are clean.",
+      "references": "ICAR Horticulture Manual (2024)",
+      "last_reviewed": "2025-11-20"
+    },
+    "tomato bacterial spot": {
+      "disease_name": "Tomato Bacterial Spot",
+      "scientific_name": "Xanthomonas perforans",
+      "crop": "Tomato",
+      "symptoms": "Small, dark, greasy spots on leaves with yellow halos. Spots dry out and the center collapses. Leaves drop.",
+      "causes": "Bacterial pathogen carried on seeds, stakes, or crop residues.",
+      "spread": "Rain splash, high humidity, overhead irrigation, and handling wet plants.",
+      "organic_treatments": [
+        "Spray organic copper fungicides at 7-10 day intervals.",
+        "Use biological sprays containing Bacillus subtilis."
+      ],
+      "chemical_treatments": [
+        "Apply streptomycin sulfate at seedling stages.",
+        "Apply copper-mancozeb tank mixes."
+      ],
+      "preventive_measures": [
+        "Use certified disease-free seeds and transplants.",
+        "Sanitize stakes, cages, and tools with disinfectant annually.",
+        "Rotate tomatoes with corn or beans; avoid peppers/potatoes."
+      ],
+      "fertilizer_advice": "Ensure adequate potassium levels to support leaf structure and disease resistance.",
+      "weather_sensitivity": "Active during warm (24-32C), humid weather with frequent rainfall.",
+      "humidity_threshold": 85,
+      "temperature_range": "24C-32C",
+      "recovery_guidance": "Bacterial infections are systemic; fungicides only check spread. Remove severely defoliated plants. Vigor return takes 3 weeks.",
+      "references": "ICAR Solanaceous Pathology Reports (2024), Florida Extension Tomato Guide",
+      "last_reviewed": "2025-07-11"
+    },
+    "tomato early blight": {
+      "disease_name": "Tomato Early Blight",
+      "scientific_name": "Alternaria solani",
+      "crop": "Tomato",
+      "symptoms": "Brown, circular spots with concentric target-board rings on lower leaves. Leaves yellow and fall off.",
+      "causes": "Fungus overwintering in soil and crop residue.",
+      "spread": "Wind and splashing rain water carry conidia onto lower leaves.",
+      "organic_treatments": [
+        "Apply copper octanoate or copper hydroxide sprays.",
+        "Spray organic biological competitor products."
+      ],
+      "chemical_treatments": [
+        "Apply chlorothalonil or mancozeb at V4-V6 stages.",
+        "Use systemic pyraclostrobin if rain patterns persist."
+      ],
+      "preventive_measures": [
+        "Stake and prune lower leaves up to 12 inches from soil.",
+        "Apply organic straw mulch around the base of plants."
+      ],
+      "fertilizer_advice": "Maintain balanced nitrogen-potassium ratios; weak, nitrogen-starved tomatoes are highly susceptible.",
+      "weather_sensitivity": "Favored by warm temperatures and frequent dew or light rains.",
+      "humidity_threshold": 80,
+      "temperature_range": "22C-28C",
+      "recovery_guidance": "Prune off spotted lower leaves immediately. Protect remaining canopy. Recovery expected in 10-14 days.",
+      "references": "FAO Vegetable Technical circular (2023), Cornell Extension Tomato Guide",
+      "last_reviewed": "2025-08-20"
+    },
+    "tomato late blight": {
+      "disease_name": "Tomato Late Blight",
+      "scientific_name": "Phytophthora infestans",
+      "crop": "Tomato",
+      "symptoms": "Large, irregular water-soaked dark lesions on leaves and stems. White, fuzzy fungal growth on the underside during humid mornings.",
+      "causes": "Oomycete pathogen overwintering in live potato tubers and solanaceous weeds.",
+      "spread": "Wind currents carry sporangia for miles; splashing water spreads zoospores.",
+      "organic_treatments": [
+        "Apply copper hydroxide immediately at low-humidity periods.",
+        "Use biological bacillus subtilis sprays to inhibit zoospore germination."
+      ],
+      "chemical_treatments": [
+        "Apply metalaxyl, chlorothalonil, or cyazofamid.",
+        "Apply systemic propamocarb for high-risk field containment."
+      ],
+      "preventive_measures": [
+        "Keep canopy pruned to maximize air movement.",
+        "Destroy all volunteer tomatoes, potatoes, and nightshade weeds near fields."
+      ],
+      "fertilizer_advice": "Avoid heavy nitrogen fertilizers which stimulate dense leaf growth and trap humidity.",
+      "weather_sensitivity": "Active during cool (15-20C), wet, foggy, and highly humid weather.",
+      "humidity_threshold": 90,
+      "temperature_range": "12C-22C",
+      "recovery_guidance": "Extremely destructive. Pull and burn infected plants instantly to save neighboring beds. Vigor recovery is highly unlikely if stem lesions are present.",
+      "references": "ICAR Solanaceous Advisory (2024), Cornell University Extension",
+      "last_reviewed": "2025-09-18"
+    },
+    "tomato leaf mold": {
+      "disease_name": "Tomato Leaf Mold",
+      "scientific_name": "Passalora fulva",
+      "crop": "Tomato",
+      "symptoms": "Pale green or yellow spots on upper leaf surfaces. Olive-green velvety fungal growth on the leaf underside.",
+      "causes": "Fungus overwintering in seed, crop residue, and greenhouse structures.",
+      "spread": "Conidia carried by wind, rain, tools, and clothing.",
+      "organic_treatments": [
+        "Apply organic copper octanoate sprays.",
+        "Spray sulfur dust or bio-fungicide formulations."
+      ],
+      "chemical_treatments": [
+        "Apply chlorothalonil or mancozeb.",
+        "Use DMI class systemic fungicides (e.g. difenoconazole)."
+      ],
+      "preventive_measures": [
+        "Increase greenhouse ventilation; keep relative humidity below 85%.",
+        "Prune lower foliage and stake tomatoes to prevent leaf overlapping."
+      ],
+      "fertilizer_advice": "Maintain balanced potassium levels to increase cell wall rigidity.",
+      "weather_sensitivity": "Active in high relative humidity (above 85%) and moderate temperatures.",
+      "humidity_threshold": 85,
+      "temperature_range": "20C-28C",
+      "recovery_guidance": "Improve airflow immediately. Velvety spots will remain but spread will halt. Canopy recovery expected in 2 weeks.",
+      "references": "Greenhouse Vegetable Disease Compendium (2023), Penn State Extension",
+      "last_reviewed": "2025-10-12"
+    },
+    "tomato septoria leaf spot": {
+      "disease_name": "Tomato Septoria Leaf Spot",
+      "scientific_name": "Septoria lycopersici",
+      "crop": "Tomato",
+      "symptoms": "Numerous small, circular spots on lower leaves with dark borders and gray centers. Center of spots shows tiny black pycnidia.",
+      "causes": "Fungus overwintering in crop debris, solanaceous weeds, and wooden stakes.",
+      "spread": "Spattered water drops splash conidia from soil surface onto foliage.",
+      "organic_treatments": [
+        "Apply copper hydroxide or organic copper soaps.",
+        "Spray biological sprays at weekly intervals."
+      ],
+      "chemical_treatments": [
+        "Apply chlorothalonil or mancozeb.",
+        "Spray azoxystrobin if disease is progressing upward."
+      ],
+      "preventive_measures": [
+        "Apply 2 inches of organic mulch (straw or plastic) to block soil splash.",
+        "Clean all stakes and cages with bleach or alcohol at season end."
+      ],
+      "fertilizer_advice": "Incorporate potassium and organic compost to support canopy density.",
+      "weather_sensitivity": "Active during warm (20-25C), wet weather with high rainfall.",
+      "humidity_threshold": 80,
+      "temperature_range": "20C-26C",
+      "recovery_guidance": "Cut off heavily spotted lower leaves. Protect new leaves with copper. Recovery expected in 10-14 days.",
+      "references": "ICAR Tomato Advisory Bulletin (2024), Ohio State Extension",
+      "last_reviewed": "2025-07-28"
+    },
+    "tomato spider mites": {
+      "disease_name": "Tomato Spider Mites",
+      "scientific_name": "Tetranychus urticae",
+      "crop": "Tomato",
+      "symptoms": "Fine yellow-to-white stippling (specks) on leaves. Leaves look dusty and turn bronze. Fine webbing on leaf under-surfaces.",
+      "causes": "Acarid pest multiplying rapidly in hot, dry conditions.",
+      "spread": "Mites crawl locally or crawl onto silk threads to blow on the wind.",
+      "organic_treatments": [
+        "Apply organic neem oil, insecticidal soap, or horticultural oils.",
+        "Release predatory mites (Phytoseiulus persimilis) into the canopy."
+      ],
+      "chemical_treatments": [
+        "Apply abamectin or bifenazate miticides.",
+        "Spray spiromesifen under high infestation pressures."
+      ],
+      "preventive_measures": [
+        "Keep field borders clear of dusty weeds which harbor mites.",
+        "Ensure plants receive adequate moisture; drought-stressed tomatoes release stress volatiles that attract mites."
+      ],
+      "fertilizer_advice": "Avoid over-application of nitrogen; excess nitrogen increases amino acid levels in leaves, making them highly nutritious for mites.",
+      "weather_sensitivity": "Pest population explodes in hot, dry weather with low relative humidity.",
+      "humidity_threshold": 45,
+      "temperature_range": "27C-38C",
+      "recovery_guidance": "Mites cause permanent leaf scarring. Wash leaves with water pressure to break webs. New shoots emerge healthy in 10 days.",
+      "references": "FAO Tomato Pest Management Guides (2024), University of California IPM",
+      "last_reviewed": "2025-06-30"
+    },
+    "tomato target spot": {
+      "disease_name": "Tomato Target Spot",
+      "scientific_name": "Corynespora cassiicola",
+      "crop": "Tomato",
+      "symptoms": "Zonate, brown spots on leaves with dark margins. Fruits develop sunken, dark brown, circular lesions.",
+      "causes": "Fungus overwintering in soil, weeds, and crop residues.",
+      "spread": "Windblown spores and splashing rain drops disperse conidia.",
+      "organic_treatments": [
+        "Apply organic copper fungicides.",
+        "Use Bacillus subtilis based bio-fungicides."
+      ],
+      "chemical_treatments": [
+        "Apply chlorothalonil, mancozeb, or strobilurin fungicides.",
+        "Use penthiopyrad or fluxapyroxad in rotation."
+      ],
+      "preventive_measures": [
+        "Use drip irrigation to keep leaf canopy dry.",
+        "Maintain crop spacing of 24 inches to allow wind drying."
+      ],
+      "fertilizer_advice": "Maintain balanced organic NPK nutrition to prevent premature plant senescence.",
+      "weather_sensitivity": "Active during warm, highly humid periods with long leaf wetness duration.",
+      "humidity_threshold": 80,
+      "temperature_range": "25C-32C",
+      "recovery_guidance": "Affected fruits are unmarketable. Protect remaining foliage with copper. Recovery seen in 2 weeks.",
+      "references": "FAO Vegetable Advisory (2024), Florida Tomato Institute Reports",
+      "last_reviewed": "2025-07-20"
+    },
+    "tomato yellow leaf curl": {
+      "disease_name": "Tomato Yellow Leaf Curl",
+      "scientific_name": "Tomato yellow leaf curl virus (TYLCV)",
+      "crop": "Tomato",
+      "symptoms": "Leaves are small, curl upward and inward, and show severe interveinal yellowing (chlorosis). Plants are stunted.",
+      "causes": "Begomovirus.",
+      "spread": "Transmitted by the Sweetpotato Whitefly (Bemisia tabaci) during sap feeding.",
+      "organic_treatments": [
+        "Spray organic insecticidal soaps or neem oil to suppress whiteflies.",
+        "Apply reflective plastic mulch to deter whiteflies from landing."
+      ],
+      "chemical_treatments": [
+        "Use systemic neonicotinoid insecticides (e.g., imidacloprid) in seedling soil.",
+        "Apply spiromesifen or cyantraniliprole to control whitefly nymphs and adults."
+      ],
+      "preventive_measures": [
+        "Install 50-mesh whitefly-proof netting on greenhouse windows.",
+        "Rake and remove infected plants immediately to prevent virus reservoir build-up."
+      ],
+      "fertilizer_advice": "Apply foliar seaweed extracts to help stunted plants absorb micro-nutrients.",
+      "weather_sensitivity": "Whitefly vector populations swell rapidly in dry, warm summer months.",
+      "humidity_threshold": 50,
+      "temperature_range": "26C-35C",
+      "recovery_guidance": "Systemic viral infection. Affected plants will not recover and fruit set stops. Destroy infected plants immediately.",
+      "references": "ICAR Virology Bulletins (2024), University of Florida Extension",
+      "last_reviewed": "2025-08-14"
+    },
+    "tomato mosaic virus": {
+      "disease_name": "Tomato Mosaic Virus (ToMV)",
+      "scientific_name": "Tomato mosaic virus",
+      "crop": "Tomato",
+      "symptoms": "Mottling of leaves (alternating light and dark green areas). Leaves can look narrow, puckered, or fern-like.",
+      "causes": "Tobamovirus.",
+      "spread": "Extremely stable virus spread mechanically via hands, tools, stakes, and plant-to-plant contact.",
+      "organic_treatments": [
+        "Wash hands and tools with dry milk powder or soap solution before handling plants.",
+        "Remove infected plants immediately."
+      ],
+      "chemical_treatments": [
+        "None available. Disinfect tools with trisodium phosphate (TSP) or virucidal sanitizers."
+      ],
+      "preventive_measures": [
+        "Use certified seed; treat seeds with hot water or trisodium phosphate.",
+        "Remove nightshade weeds and ground cherries near the field."
+      ],
+      "fertilizer_advice": "Maintain baseline organic NPK compost. Avoid stress that triggers symptom expression.",
+      "weather_sensitivity": "Symptoms are expressed severely in moderate temperatures and overcast sky conditions.",
+      "humidity_threshold": 60,
+      "temperature_range": "20C-28C",
+      "recovery_guidance": "Highly contagious. No chemical cure. Pull and bury plants immediately. Disinfect stakes and cages.",
+      "references": "FAO Virology Manual (2023), Cornell Extension Tomato Reports",
+      "last_reviewed": "2025-09-02"
+    },
+    "tomato healthy": {
+      "disease_name": "Tomato Healthy",
+      "scientific_name": "N/A",
+      "crop": "Tomato",
+      "symptoms": "Leaves are broad, dark green, flat, without greasy yellow spots, target rings, curling, or webbing.",
+      "causes": "N/A",
+      "spread": "N/A",
+      "organic_treatments": [
+        "Apply organic compost or worm castings around base.",
+        "Stake plants to keep fruits off soil."
+      ],
+      "chemical_treatments": [
+        "None required."
+      ],
+      "preventive_measures": [
+        "Maintain consistent watering at root zone to prevent blossom-end rot.",
+        "Stake and trellis vines for maximum airflow."
+      ],
+      "fertilizer_advice": "Apply organic high-phosphorus/calcium fertilizer during bloom, adding nitrogen after fruit set.",
+      "weather_sensitivity": "Requires consistent watering; sudden moisture swings split tomatoes.",
+      "humidity_threshold": 65,
+      "temperature_range": "18C-32C",
+      "recovery_guidance": "Vigorous growth. Fruit development is clean.",
+      "references": "ICAR Tomato Advisory Circular (2024)",
+      "last_reviewed": "2026-01-10"
+    }
+  }
+}

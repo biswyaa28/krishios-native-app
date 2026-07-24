@@ -1,0 +1,9 @@
+{
+  "config": {
+    "active_engine": "hybrid",
+    "offline_confidence_threshold": 0.75,
+    "max_history_turns": 10,
+    "local_kb_version": "1.0.4",
+    "allow_fallback_to_online": true
+  }
+}

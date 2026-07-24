@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
@@ -10,6 +9,8 @@ import '../../../../shared/models/user_profile.dart';
 import '../../../../shared/providers/auth_provider.dart';
 import '../../../settings/presentation/screens/settings_screen.dart';
 import '../../../scan/presentation/screens/scan_history_screen.dart';
+import 'package:krishios/shared/presentation/providers/language_provider.dart';
+import 'package:krishios/shared/services/translation_service.dart';
 
 class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({super.key});
@@ -21,20 +22,20 @@ class ProfileScreen extends ConsumerStatefulWidget {
 class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   bool _uploading = false;
 
-  Future<void> _updateName(UserProfile profile) async {
+  Future<void> _updateName(UserProfile profile, String activeLang) async {
     final nameController = TextEditingController(text: profile.name);
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Update Profile Name'),
+        title: Text(TranslationService.translate('update_name_title', activeLang)),
         content: TextField(
           controller: nameController,
-          decoration: const InputDecoration(labelText: 'Full Name'),
+          decoration: InputDecoration(labelText: TranslationService.translate('full_name', activeLang)),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
-            child: const Text('Cancel'),
+            child: Text(TranslationService.translate('cancel', activeLang)),
           ),
           ElevatedButton(
             onPressed: () async {
@@ -42,12 +43,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               if (newName.isEmpty) return;
               Navigator.pop(ctx);
               try {
-                // Update Firestore
                 await FirebaseFirestore.instance
                     .collection('users')
                     .doc(profile.uid)
                     .update({'name': newName});
-                // Update Firebase Auth displayName
                 await FirebaseAuth.instance.currentUser?.updateDisplayName(newName);
                 if (mounted) {
                   ScaffoldMessenger.of(context).showSnackBar(
@@ -62,7 +61,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                 }
               }
             },
-            child: const Text('Save'),
+            child: Text(TranslationService.translate('save', activeLang)),
           ),
         ],
       ),
@@ -77,17 +76,15 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
 
       setState(() => _uploading = true);
 
-      // Upload file to Firebase Storage
       final storageRef = FirebaseStorage.instance
           .ref()
           .child('avatars')
           .child(profile.uid)
           .child('profile.jpg');
 
-      await storageRef.putFile(File(file.path));
+      await storageRef.putData(await file.readAsBytes());
       final downloadUrl = await storageRef.getDownloadURL();
 
-      // Write download URL to Firestore
       await FirebaseFirestore.instance
           .collection('users')
           .doc(profile.uid)
@@ -109,35 +106,31 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     }
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     final profileAsync = ref.watch(userProfileProvider);
     final isGuest = ref.watch(isGuestProvider);
+    final activeLang = ref.watch(languageProvider);
 
     return Scaffold(
-      backgroundColor: AppColors.background,
       appBar: AppBar(
-        title: const Text('My Profile'),
-        backgroundColor: AppColors.surface,
-        foregroundColor: AppColors.onSurface,
+        title: Text(TranslationService.translate('profile_title', activeLang)),
         elevation: 0,
       ),
       body: isGuest
-          ? _buildGuestView()
+          ? _buildGuestView(activeLang)
           : profileAsync.when(
               data: (profile) {
-                if (profile == null) return const Center(child: Text('Profile not found.'));
-                return _buildProfileContent(profile);
+                if (profile == null) return Center(child: Text(TranslationService.translate('profile_not_found', activeLang)));
+                return _buildProfileContent(profile, activeLang);
               },
-              loading: () => const Center(child: CircularProgressIndicator(color: AppColors.primary)),
+              loading: () => Center(child: CircularProgressIndicator(color: AppColors.primary)),
               error: (err, _) => Center(child: Text('Error loading profile: $err')),
             ),
     );
   }
 
-  Widget _buildGuestView() {
+  Widget _buildGuestView(String activeLang) {
     return Padding(
       padding: const EdgeInsets.all(24),
       child: Center(
@@ -146,10 +139,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           children: [
             const Icon(Icons.account_circle, size: 96, color: Colors.grey),
             const SizedBox(height: 16),
-            Text('Guest Mode', style: AppTextStyles.headlineMd),
+            Text(TranslationService.translate('guest_mode', activeLang), style: AppTextStyles.headlineMd),
             const SizedBox(height: 8),
-            const Text(
-              'Sign in with an account to view and synchronize profile data, upload avatars, and save scan diagnostics online.',
+            Text(
+              TranslationService.translate('guest_mode_desc', activeLang),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 24),
@@ -165,7 +158,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   foregroundColor: AppColors.onPrimary,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
                 ),
-                child: const Text('Sign In or Register'),
+                child: Text(TranslationService.translate('sign_in_register', activeLang)),
               ),
             ),
           ],
@@ -174,7 +167,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     );
   }
 
-  Widget _buildProfileContent(UserProfile profile) {
+  Widget _buildProfileContent(UserProfile profile, String activeLang) {
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
@@ -185,7 +178,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                 radius: 60,
                 backgroundColor: AppColors.secondaryContainer,
                 child: _uploading
-                    ? const CircularProgressIndicator(color: AppColors.primary)
+                    ? CircularProgressIndicator(color: AppColors.primary)
                     : profile.avatarUrl != null
                         ? ClipOval(
                             child: Image.network(
@@ -224,8 +217,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                 children: [
                   Text(profile.name, style: AppTextStyles.headlineMd),
                   IconButton(
-                    icon: const Icon(Icons.edit, size: 18, color: AppColors.primary),
-                    onPressed: () => _updateName(profile),
+                    icon: Icon(Icons.edit, size: 18, color: AppColors.primary),
+                    onPressed: () => _updateName(profile, activeLang),
                   ),
                 ],
               ),
@@ -235,15 +228,15 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           ),
         ),
         const SizedBox(height: 32),
-        Text('Features & Settings', style: AppTextStyles.labelMd.copyWith(color: AppColors.primary)),
+        Text(TranslationService.translate('features_settings', activeLang), style: AppTextStyles.labelMd.copyWith(color: AppColors.primary)),
         const SizedBox(height: 12),
         Card(
           child: Column(
             children: [
               ListTile(
-                leading: const Icon(Icons.history, color: AppColors.primary),
-                title: const Text('Scan Logs History'),
-                subtitle: const Text('View and search all previous crop disease reports.'),
+                leading: Icon(Icons.history, color: AppColors.primary),
+                title: Text(TranslationService.translate('Scan History', activeLang)),
+                subtitle: Text(TranslationService.translate('Scan', activeLang)),
                 trailing: const Icon(Icons.chevron_right),
                 onTap: () {
                   Navigator.push(
@@ -254,9 +247,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               ),
               const Divider(height: 1),
               ListTile(
-                leading: const Icon(Icons.settings_outlined, color: AppColors.primary),
-                title: const Text('Application Settings'),
-                subtitle: const Text('Configure dark theme, language, and notifications.'),
+                leading: Icon(Icons.settings_outlined, color: AppColors.primary),
+                title: Text(TranslationService.translate('settings_title', activeLang)),
+                subtitle: Text(TranslationService.translate('settings_desc', activeLang)),
                 trailing: const Icon(Icons.chevron_right),
                 onTap: () {
                   Navigator.push(
@@ -269,7 +262,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           ),
         ),
         const SizedBox(height: 24),
-          SizedBox(
+        SizedBox(
           width: double.infinity,
           height: 48,
           child: OutlinedButton.icon(
@@ -278,10 +271,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               await ref.read(authServiceProvider).signOut();
             },
             icon: const Icon(Icons.logout),
-            label: const Text('Log Out'),
+            label: Text(TranslationService.translate('log_out', activeLang)),
             style: OutlinedButton.styleFrom(
               foregroundColor: AppColors.error,
-              side: const BorderSide(color: AppColors.error),
+              side: BorderSide(color: AppColors.error),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
             ),
           ),

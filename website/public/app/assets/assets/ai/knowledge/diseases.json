@@ -1,0 +1,9 @@
+{
+  "tomato_diseases": {
+    "late_blight": "Fungal pathogen Phytophthora infestans. Appears as dark spots on leaves with white spore rings underneath. High spread risk under humid conditions.",
+    "bacterial_spot": "Bacterial pathogen Xanthomonas. Causes small, dark brown spots. Sprays of copper-based bactericides may assist, alongside sanitation."
+  },
+  "apple_diseases": {
+    "scab": "Fungal pathogen Venturia inaequalis. Causes olive-brown spots. Prune canopy to promote quick leaf drying."
+  }
+}

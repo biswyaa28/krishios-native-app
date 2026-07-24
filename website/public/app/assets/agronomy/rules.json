@@ -1,0 +1,18 @@
+{
+  "weather_thresholds": {
+    "humidity_high": 85,
+    "temperature_low": 10,
+    "temperature_high": 35
+  },
+  "soil_guidelines": {
+    "clay": "Clay soils retain water. Avoid overwatering to prevent root rot in wet conditions.",
+    "sandy": "Sandy soils drain quickly. Apply organic mulches and water more frequently.",
+    "loamy": "Loamy soil has ideal drainage and nutrient retention. Maintain regular watering cycles."
+  },
+  "stage_guidelines": {
+    "vegetative": "Support active vegetative growth with nitrogen-based organic fertilizers.",
+    "flowering": "Divert nutrition to potassium and phosphorus. Avoid overhead watering during bloom to prevent flower drop.",
+    "fruiting": "Maintain consistent moisture to prevent fruit split and rot.",
+    "mature": "Reduce irrigation and prepare for harvest. Monitor for post-harvest decay vectors."
+  }
+}
