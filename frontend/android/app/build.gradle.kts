@@ -21,6 +21,16 @@ android {
     compileSdk = 36
     ndkVersion = flutter.ndkVersion
 
+    // NDK r28 (28.2.13676358, Clang 19) requires CMake >= 3.31. The SDK's bundled
+    // CMake 3.22.1 cannot drive the r28 toolchain and mis-targets the host (macOS)
+    // instead of Android, breaking the transitive `jni` native build (via onnxruntime_v2).
+    // Pin CMake 3.31.6 (installed via sdkmanager) so AGP does not fall back to 3.22.1.
+    externalNativeBuild {
+        cmake {
+            version = "3.31.6"
+        }
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
