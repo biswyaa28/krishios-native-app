@@ -63,7 +63,7 @@ export default function Navbar() {
         {/* Action Controls */}
         <div className="hidden md:flex items-center gap-3">
           <a
-            href="https://github.com/biswyaa28/krishios-native-app.git"
+            href="https://github.com/ZoroDev0/KrishiOS.git"
             target="_blank"
             rel="noopener noreferrer"
             className="w-9 h-9 rounded-full bg-[#F6F4ED] border border-[#1A2919]/10 flex items-center justify-center text-[#1A2919] hover:bg-[#233B22] hover:text-[#F6F4ED] transition-all"
@@ -72,12 +72,12 @@ export default function Navbar() {
             <GithubIcon className="w-4 h-4" />
           </a>
 
-          {/* Download Android APK Button */}
+          {/* Launch Web App Button */}
           <Link
-            href="/#download"
+            href="/app/index.html"
             className="flex items-center gap-2 px-5 py-2 rounded-full bg-[#233B22] text-[#F6F4ED] text-xs font-medium hover:bg-[#1B2E1A] shadow-md transition-all hover:scale-[1.02]"
           >
-            <span>Get App</span>
+            <span>Launch Web App</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
           </Link>
         </div>
@@ -98,37 +98,45 @@ export default function Navbar() {
           <Link
             href="/#about"
             onClick={() => setMobileMenuOpen(false)}
-            className="py-2 border-b border-black/5 hover:text-[#233B22]"
+            className="py-2 border-b border-[#1A2919]/10"
           >
             About Us
           </Link>
           <Link
             href="/#features"
             onClick={() => setMobileMenuOpen(false)}
-            className="py-2 border-b border-black/5 hover:text-[#233B22]"
+            className="py-2 border-b border-[#1A2919]/10"
           >
-            Architecture &amp; Features
+            Architecture
           </Link>
           <Link
             href="/#experience"
             onClick={() => setMobileMenuOpen(false)}
-            className="py-2 border-b border-black/5 hover:text-[#233B22]"
+            className="py-2 border-b border-[#1A2919]/10"
           >
-            Product Experience
+            Experience
           </Link>
           <Link
             href="/#download"
             onClick={() => setMobileMenuOpen(false)}
-            className="py-2 border-b border-black/5 hover:text-[#233B22]"
+            className="py-2 border-b border-[#1A2919]/10"
           >
-            Download APK
+            Download
           </Link>
           <Link
             href="/#team"
             onClick={() => setMobileMenuOpen(false)}
-            className="py-2 hover:text-[#233B22]"
+            className="py-2 border-b border-[#1A2919]/10"
           >
             Team 4 Brain
+          </Link>
+          <Link
+            href="/app/index.html"
+            onClick={() => setMobileMenuOpen(false)}
+            className="flex items-center justify-between py-2 text-[#233B22] font-bold"
+          >
+            <span>Launch Web App</span>
+            <ArrowUpRight className="w-4 h-4" />
           </Link>
         </div>
       )}
